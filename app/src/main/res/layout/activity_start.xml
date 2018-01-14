@@ -24,6 +24,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
+        <ru.mbg.nczd.views.MainBottomNavBar
+            android:id="@+id/bottom_navigation_bar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </ru.mbg.nczd.views.MainBottomNavBar>
 
     </android.support.constraint.ConstraintLayout>
 

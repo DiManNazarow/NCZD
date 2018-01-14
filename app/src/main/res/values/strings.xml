@@ -9,5 +9,11 @@
     <string name="profile.settings">Настроики</string>
 
     <string name="start_activity.title">Контакты</string>
+    
+    <string name="bottom_nav.news">Новости</string>
+    <string name="bottom_nav.about">О центре</string>
+    <string name="bottom_nav.contacts">Контакты</string>
+    <string name="bottom_nav.reception">Запись</string>
+    <string name="bottom_nav.advice">Советы</string>
 
 </resources>
