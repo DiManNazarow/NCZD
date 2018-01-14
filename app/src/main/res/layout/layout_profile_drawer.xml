@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ru.mbg.nczd.feature.profile.ProfileHeaderView
+        android:id="@+id/profile_header_view"
+        android:layout_width="match_parent"
+        android:layout_height="196dp">
+
+    </ru.mbg.nczd.feature.profile.ProfileHeaderView>
+
+    <ru.mbg.nczd.feature.profile.ProfileContentView
+        android:id="@+id/profile_content_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/divider_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_header_view">
+
+    </ru.mbg.nczd.feature.profile.ProfileContentView>
+
+    <View
+        android:id="@+id/divider_view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="47dp"
+        android:background="#edeff2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <Button
+        android:id="@+id/setting_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:drawableLeft="@drawable/ic_settings"
+        android:drawablePadding="30dp"
+        android:drawableStart="@drawable/ic_settings"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="start|center_vertical"
+        android:text="@string/profile.settings"
+        android:textColor="#c01f2f42"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        android:stateListAnimator="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_content_view"/>
+
+</android.support.constraint.ConstraintLayout>

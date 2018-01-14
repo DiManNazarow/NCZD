@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">NCZD</string>
+
+    <string name="profile.good_day">Добрый день!</string>
+    <string name="profile.auth_please">Авторизуйтесь пожалуйста</string>
+    <string name="profile.reception_info">Для того, чтобы записаться на приём, необходимо авторизоваться</string>
+    <string name="profile.sign_in">Войти</string>
+    <string name="profile.register">Зарегистрироваться</string>
+    <string name="profile.settings">Настроики</string>
+
+    <string name="start_activity.title">Контакты</string>
+
+</resources>
