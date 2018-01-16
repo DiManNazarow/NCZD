@@ -1,4 +1,4 @@
-package ru.mbg.nczd.activities.start;
+package ru.mbg.nczd.activities.start.mvp;
 
 import com.arellomobile.mvp.MvpView;
 
@@ -9,5 +9,9 @@ import com.arellomobile.mvp.MvpView;
 public interface StartView extends MvpView {
 
     void openDrawer();
+
+    void onLogin();
+
+    void onRegister();
 
 }

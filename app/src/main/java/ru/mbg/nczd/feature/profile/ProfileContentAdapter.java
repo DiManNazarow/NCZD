@@ -1,5 +1,7 @@
 package ru.mbg.nczd.feature.profile;
 
+import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.Button;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.mbg.nczd.R;
+import ru.mbg.nczd.utils.Actions;
 
 /**
  * Created by Дмитрий on 14.01.2018.
@@ -67,26 +70,28 @@ public class ProfileContentAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         throw new IllegalArgumentException("Unexpected mode type");
     }
 
-    protected class UnAuthorizedHolder extends RecyclerView.ViewHolder {
+    class UnAuthorizedHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.sign_in_button)
         Button mSignInButton;
         @BindView(R.id.register_button)
         Button mRegisterButton;
 
-        UnAuthorizedHolder(ViewGroup parentView) {
+        UnAuthorizedHolder(final ViewGroup parentView) {
             super(LayoutInflater.from(parentView.getContext()).inflate(R.layout.layout_sign_in, parentView, false));
             ButterKnife.bind(this, itemView);
             mSignInButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Intent intent = new Intent(Actions.LOGIN_ACTION);
+                    LocalBroadcastManager.getInstance(parentView.getContext()).sendBroadcast(intent);
                 }
             });
             mRegisterButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Intent intent = new Intent(Actions.REGISTER_ACTION);
+                    LocalBroadcastManager.getInstance(parentView.getContext()).sendBroadcast(intent);
                 }
             });
         }
