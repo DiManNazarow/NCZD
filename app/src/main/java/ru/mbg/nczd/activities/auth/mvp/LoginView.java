@@ -12,8 +12,6 @@ public interface LoginView extends MvpView {
 
     void onLogin();
 
-    void onRecoverClick();
-
     void onLoginError(@Nullable String error);
 
     void onPasswordError(@Nullable String error);

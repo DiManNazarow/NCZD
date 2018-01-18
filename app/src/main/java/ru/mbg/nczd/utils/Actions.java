@@ -16,4 +16,6 @@ public class Actions {
 
     public static final int LOGIN_REQUEST_CODE = 1000;
 
+    public static final int REGISTER_REQUEST_CODE = 1001;
+
 }

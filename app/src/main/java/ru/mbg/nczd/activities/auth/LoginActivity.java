@@ -5,19 +5,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.content.LocalBroadcastManager;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.PresenterType;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
+import butterknife.OnClick;
 import ru.mbg.nczd.R;
 import ru.mbg.nczd.activities.BaseActivity;
 import ru.mbg.nczd.activities.auth.mvp.LoginActivityPresenter;
 import ru.mbg.nczd.activities.auth.mvp.LoginView;
-import ru.mbg.nczd.utils.Actions;
 
 public class LoginActivity extends BaseActivity implements LoginView {
 
@@ -32,38 +32,31 @@ public class LoginActivity extends BaseActivity implements LoginView {
     protected TextInputEditText mPasswordEditText;
     @BindView(R.id.sign_in_button)
     protected Button mSignInButton;
-    @BindView(R.id.recover_text_view)
-    protected TextView mRecoverTextView;
 
-    @InjectPresenter
+    @InjectPresenter(type = PresenterType.LOCAL)
     LoginActivityPresenter mLoginActivityPresenter;
+
+    @ProvidePresenter(type = PresenterType.LOCAL)
+    LoginActivityPresenter provideLoginActivityPresenter(){
+        return new LoginActivityPresenter(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_login);
         super.onCreate(savedInstanceState);
-        mLoginActivityPresenter.setupViews(mLoginEditText, mPasswordEditText, mSignInButton, mRecoverTextView);
-    }
-
-    @Override
-    protected int getContentLayoutId() {
-        return R.layout.activity_login;
+        mLoginActivityPresenter.setupViews(mLoginEditText, mPasswordEditText, mSignInButton);
     }
 
     @Override
     protected String getToolbarTitle(){
-        return getString(R.string.auth);
+        return getString(R.string.sign_in);
     }
 
     @Override
     public void onLogin() {
         setResult(Activity.RESULT_OK, new Intent());
         finish();
-    }
-
-    @Override
-    public void onRecoverClick() {
-
     }
 
     @Override
@@ -75,4 +68,10 @@ public class LoginActivity extends BaseActivity implements LoginView {
     public void onPasswordError(String error) {
         mPasswordInput.setError(error);
     }
+
+    @OnClick(R.id.recover_text_view)
+    public void onRecoverClick() {
+        mLoginActivityPresenter.openRecoverActivity();
+    }
+
 }

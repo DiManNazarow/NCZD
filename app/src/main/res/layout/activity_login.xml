@@ -33,7 +33,7 @@
             android:id="@+id/login_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/auth.login"
+            android:hint="@string/sign_in.login"
             android:inputType="textAutoComplete"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -52,7 +52,7 @@
             android:id="@+id/password_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/auth.password"
+            android:hint="@string/sign_in.password"
             android:inputType="textPassword"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -76,7 +76,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
-        android:text="@string/auth.forgot_password"
+        android:text="@string/sign_in.forgot_password"
         android:textColor="#c01f2f42"
         style="@style/BaseTextStyle"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +89,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
         android:layout_marginTop="32dp"
-        android:text="@string/auth.recover"
+        android:text="@string/sign_in.recover"
         android:textColor="#2f98ea"
         style="@style/BaseTextStyle"
         app:layout_constraintStart_toEndOf="@+id/textView"

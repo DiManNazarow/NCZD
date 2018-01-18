@@ -15,6 +15,7 @@ import com.arellomobile.mvp.MvpPresenter;
 
 import ru.mbg.nczd.R;
 import ru.mbg.nczd.activities.auth.LoginActivity;
+import ru.mbg.nczd.activities.register.RegisterActivity;
 import ru.mbg.nczd.utils.Actions;
 
 /**
@@ -83,7 +84,8 @@ public class StartActivityPresenter extends MvpPresenter<StartView> {
     private BroadcastReceiver mRegisterActionReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-
+            Intent openRegisterActivity = new Intent(mActivity, RegisterActivity.class);
+            mActivity.startActivityForResult(openRegisterActivity, Actions.REGISTER_REQUEST_CODE);
         }
     };
 

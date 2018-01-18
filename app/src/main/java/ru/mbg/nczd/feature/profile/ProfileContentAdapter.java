@@ -36,6 +36,8 @@ public class ProfileContentAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType){
             case AUTH_VIEW_TYPE: return new UnAuthorizedHolder(parent);
+            case RECEPTION_VIEW_TYPE: return new ReceptionsHolder(parent);
+            case CHILD_VIEW_TYPE: return new ChildsHolder(parent);
             default: throw new IllegalArgumentException("Unexpected view type");
         }
     }
@@ -95,7 +97,20 @@ public class ProfileContentAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 }
             });
         }
+    }
 
+    class ReceptionsHolder extends RecyclerView.ViewHolder {
+
+        public ReceptionsHolder(ViewGroup parentView) {
+            super(LayoutInflater.from(parentView.getContext()).inflate(R.layout.layout_receptions, parentView, false));
+        }
+    }
+
+    class ChildsHolder extends RecyclerView.ViewHolder {
+
+        public ChildsHolder(ViewGroup parentView) {
+            super(LayoutInflater.from(parentView.getContext()).inflate(R.layout.layout_childs, parentView, false));
+        }
     }
 
 

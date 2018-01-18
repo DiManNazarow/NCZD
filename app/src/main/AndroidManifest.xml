@@ -19,6 +19,10 @@
         </activity>
         <activity android:name=".activities.auth.LoginActivity">
         </activity>
+        <activity android:name=".activities.register.RegisterActivity">
+        </activity>
+        <activity android:name=".activities.recovery.RecoveryActivity">
+        </activity>
     </application>
 
 </manifest>

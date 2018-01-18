@@ -50,4 +50,8 @@ public class ProfileContentView extends ConstraintLayout {
         mRecyclerView.setAdapter(new ProfileContentAdapter(ProfileContentAdapter.UNAUTHORIZED_MODE));
     }
 
+    private void initUserContent(){
+        mRecyclerView.setAdapter(new ProfileContentAdapter(ProfileContentAdapter.AUTHORIZED_MODE));
+    }
+
 }

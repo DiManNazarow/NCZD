@@ -1,5 +1,7 @@
 package ru.mbg.nczd.activities.auth.mvp;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -11,19 +13,25 @@ import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 
 import ru.mbg.nczd.R;
+import ru.mbg.nczd.activities.recovery.RecoveryActivity;
+import ru.mbg.nczd.mvp.BaseMvpPresenter;
 import ru.mbg.nczd.utils.AppTextUtils;
 
 /**
  * Created by Дмитрий on 17.01.2018.
  */
 @InjectViewState
-public class LoginActivityPresenter extends MvpPresenter<LoginView> {
+public class LoginActivityPresenter extends BaseMvpPresenter<LoginView> {
 
     private String mLogin;
 
     private String mPassword;
 
-    public void setupViews(TextInputEditText loginEditText, TextInputEditText passwordEditText, Button signInButton, TextView mRecoverTextView){
+    public LoginActivityPresenter(Activity activity){
+        super(activity);
+    }
+
+    public void setupViews(TextInputEditText loginEditText, TextInputEditText passwordEditText, Button signInButton){
         loginEditText.addTextChangedListener(new OnTextChangeListener() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -54,12 +62,11 @@ public class LoginActivityPresenter extends MvpPresenter<LoginView> {
                 }
             }
         });
-        mRecoverTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getViewState().onRecoverClick();
-            }
-        });
+    }
+
+    public void openRecoverActivity(){
+        Intent intent = new Intent(getActivity(), RecoveryActivity.class);
+        getActivity().startActivity(intent);
     }
 
     private abstract class OnTextChangeListener implements TextWatcher {

@@ -57,6 +57,4 @@ public abstract class BaseActivity extends MvpAppCompatActivity {
 //        mFrameLayout.addView(LayoutInflater.from(this).inflate(getContentLayoutId(), mFrameLayout, true));
 //    }
 
-    protected abstract int getContentLayoutId();
-
 }

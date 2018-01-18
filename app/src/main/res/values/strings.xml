@@ -10,11 +10,27 @@
 
     <string name="start_activity.title">Контакты</string>
 
-    <string name="auth">Авторизация</string>
-    <string name="auth.login">Логин</string>
-    <string name="auth.password">Пароль</string>
-    <string name="auth.forgot_password">Я забыл пароль</string>
-    <string name="auth.recover">Восстановить</string>
+    <string name="sign_in">Авторизация</string>
+    <string name="sign_in.login">Логин</string>
+    <string name="sign_in.password">Пароль</string>
+    <string name="sign_in.forgot_password">Я забыл пароль</string>
+    <string name="sign_in.recover">Восстановить</string>
+
+    <string name="registration">Регистрация</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="register.e_mail">E-mail</string>
+    <string name="register.confirm">Подтвердите пароль</string>
+    <string name="register.have_acc">У меня уже есть аккаунт.</string>
+    <string name="register.sign_in">Авторизоваться</string>
+
+    <string name="password_recover">Восстановление пароля</string>
+    <string name="password_recover.info">Для восстановдения пароля укажите свой электронный адрес. Новый пароль будет отправлен вам в письме.</string>
+    <string name="password_recover.recover">Восстановить</string>
+
+    <string name="receptions">Записи на прием:</string>
+    <string name="reception_action">Записаться</string>
+    <string name="childs">Дети:</string>
+    <string name="add">Добавить</string>
 
     <string name="bottom_nav.news">Новости</string>
     <string name="bottom_nav.about">О центре</string>
