@@ -1,0 +1,269 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ru.mbg.nczd.fragments.AboutFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:paddingBottom="16dp"
+        android:orientation="vertical">
+
+        <!-- TODO: Update blank fragment layout -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#1f2f42"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="8sp"
+            android:layout_marginTop="16dp"
+            android:text="@string/about"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="#de1f2f42"
+            android:lineSpacingExtra="12sp"
+            android:text="@string/about.name"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#de1f2f42"
+            android:lineSpacingExtra="12sp"
+            android:text="@string/about.name_center"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#e0e2e4"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#c01f2f42"
+            android:lineSpacingExtra="14sp"
+            android:text="@string/about.director_title"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textSize="12sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#c01f2f42"
+            android:lineSpacingExtra="6sp"
+            android:text="@string/about.director_info"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="#de1f2f42"
+            android:lineSpacingExtra="12sp"
+            android:text="@string/about.director_name"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#c01f2f42"
+            android:lineSpacingExtra="6sp"
+            android:text="@string/about.history"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#c01f2f42"
+            android:lineSpacingExtra="6sp"
+            android:text="@string/about.structure"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#c01f2f42"
+            android:lineSpacingExtra="6sp"
+            android:text="@string/about.specialists"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#c01f2f42"
+            android:lineSpacingExtra="6sp"
+            android:text="@string/about.awards"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#c01f2f42"
+            android:lineSpacingExtra="6sp"
+            android:text="@string/about.reception_type"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#c01f2f42"
+            android:lineSpacingExtra="6sp"
+            android:text="@string/about.new"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#c01f2f42"
+            android:lineSpacingExtra="6sp"
+            android:text="@string/about.sets"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#c01f2f42"
+            android:lineSpacingExtra="6sp"
+            android:text="@string/about.methods_1"
+            android:drawableLeft="@drawable/dot"
+            android:drawablePadding="16dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#c01f2f42"
+            android:lineSpacingExtra="6sp"
+            android:text="@string/about.methods_2"
+            android:drawableLeft="@drawable/dot"
+            android:drawablePadding="16dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#c01f2f42"
+            android:lineSpacingExtra="6sp"
+            android:text="@string/about.activity"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#c01f2f42"
+            android:lineSpacingExtra="6sp"
+            android:text="@string/about.activity_1"
+            android:drawableLeft="@drawable/dot"
+            android:drawablePadding="16dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#c01f2f42"
+            android:lineSpacingExtra="6sp"
+            android:text="@string/about.activity_2"
+            android:drawableLeft="@drawable/dot"
+            android:drawablePadding="16dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#c01f2f42"
+            android:lineSpacingExtra="6sp"
+            android:text="@string/about.activity_3"
+            android:drawableLeft="@drawable/dot"
+            android:drawablePadding="16dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#c01f2f42"
+            android:lineSpacingExtra="6sp"
+            android:text="@string/about.activity_4"
+            android:drawableLeft="@drawable/dot"
+            android:drawablePadding="16dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#c01f2f42"
+            android:lineSpacingExtra="6sp"
+            android:text="@string/about.end"/>
+
+    </LinearLayout>
+
+</ScrollView>

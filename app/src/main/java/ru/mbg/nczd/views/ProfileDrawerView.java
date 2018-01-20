@@ -7,13 +7,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import ru.mbg.nczd.R;
+import ru.mbg.nczd.feature.profile.ProfileContentView;
 
 /**
  * Created by Дмитрий on 14.01.2018.
  */
 
 public class ProfileDrawerView extends LinearLayout {
+
+    @BindView(R.id.profile_content_view)
+    protected ProfileContentView mProfileContentView;
 
     private View mRootView;
 
@@ -34,6 +40,15 @@ public class ProfileDrawerView extends LinearLayout {
 
     private void init(){
         mRootView = LayoutInflater.from(getContext()).inflate(R.layout.layout_profile_drawer, this, true);
+        ButterKnife.bind(this, mRootView);
+    }
+
+    public void initUserContent(){
+        mProfileContentView.initUserContent();
+    }
+
+    public void initSignInContent(){
+        mProfileContentView.initSignInContent();
     }
 
 }

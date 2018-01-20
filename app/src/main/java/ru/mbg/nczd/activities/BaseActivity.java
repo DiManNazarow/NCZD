@@ -1,6 +1,7 @@
 package ru.mbg.nczd.activities;
 
 import android.os.Bundle;
+import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -51,6 +52,14 @@ public abstract class BaseActivity extends MvpAppCompatActivity {
 
     protected String getToolbarTitle(){
         return getString(R.string.app_name);
+    }
+
+    protected void setToolbarTitle(String title){
+        mToolbar.setTitle(title);
+    }
+
+    protected void setToolbarTitle(@StringRes int stringId){
+        mToolbar.setTitle(stringId);
     }
 
 //    protected void prepareContentLayout(){

@@ -46,11 +46,11 @@ public class ProfileContentView extends ConstraintLayout {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
-    private void initSignInContent(){
+    public void initSignInContent(){
         mRecyclerView.setAdapter(new ProfileContentAdapter(ProfileContentAdapter.UNAUTHORIZED_MODE));
     }
 
-    private void initUserContent(){
+    public void initUserContent(){
         mRecyclerView.setAdapter(new ProfileContentAdapter(ProfileContentAdapter.AUTHORIZED_MODE));
     }
 

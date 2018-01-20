@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +17,10 @@ import com.arellomobile.mvp.MvpPresenter;
 import ru.mbg.nczd.R;
 import ru.mbg.nczd.activities.auth.LoginActivity;
 import ru.mbg.nczd.activities.register.RegisterActivity;
+import ru.mbg.nczd.fragments.AboutFragment;
+import ru.mbg.nczd.fragments.AdviceFragment;
+import ru.mbg.nczd.fragments.NewsFragment;
+import ru.mbg.nczd.mvp.BaseMvpPresenter;
 import ru.mbg.nczd.utils.Actions;
 
 /**
@@ -23,12 +28,15 @@ import ru.mbg.nczd.utils.Actions;
  */
 
 @InjectViewState
-public class StartActivityPresenter extends MvpPresenter<StartView> {
+public class StartActivityPresenter extends BaseMvpPresenter<StartView> {
 
-    private Activity mActivity;
+    private NewsFragment mNewsFragment;
+    private AboutFragment mAboutFragment;
+    private AdviceFragment mAdviceFragment;
 
     public StartActivityPresenter(Activity activity){
-        mActivity = activity;
+        super(activity);
+        initFragments();
     }
 
     public void setupToolbar(Toolbar toolbar){
@@ -41,6 +49,27 @@ public class StartActivityPresenter extends MvpPresenter<StartView> {
                 getViewState().openDrawer();
             }
         });
+    }
+
+    public void initFragments(){
+        mNewsFragment = NewsFragment.newInstance();
+        mAboutFragment = AboutFragment.newInstance();
+        mAdviceFragment = AdviceFragment.newInstance();
+    }
+
+    @NonNull
+    public NewsFragment getNewsFragment() {
+        return mNewsFragment;
+    }
+
+    @NonNull
+    public AboutFragment getAboutFragment() {
+        return mAboutFragment;
+    }
+
+    @NonNull
+    public AdviceFragment getAdviceFragment() {
+        return mAdviceFragment;
     }
 
     public void registerReceivers(Context context){
@@ -76,16 +105,16 @@ public class StartActivityPresenter extends MvpPresenter<StartView> {
     private BroadcastReceiver mLoginActionReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Intent openLoginActivity = new Intent(mActivity, LoginActivity.class);
-            mActivity.startActivityForResult(openLoginActivity, Actions.LOGIN_REQUEST_CODE);
+            Intent openLoginActivity = new Intent(getActivity(), LoginActivity.class);
+            getActivity().startActivityForResult(openLoginActivity, Actions.LOGIN_REQUEST_CODE);
         }
     };
 
     private BroadcastReceiver mRegisterActionReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Intent openRegisterActivity = new Intent(mActivity, RegisterActivity.class);
-            mActivity.startActivityForResult(openRegisterActivity, Actions.REGISTER_REQUEST_CODE);
+            Intent openRegisterActivity = new Intent(getActivity(), RegisterActivity.class);
+            getActivity().startActivityForResult(openRegisterActivity, Actions.REGISTER_REQUEST_CODE);
         }
     };
 

@@ -32,10 +32,22 @@
 
         </ru.mbg.nczd.views.MainBottomNavBar>
 
+        <FrameLayout
+            android:id="@+id/content_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        </FrameLayout>
+
     </android.support.constraint.ConstraintLayout>
 
     <!-- Drawer content -->
     <ru.mbg.nczd.views.ProfileDrawerView
+        android:id="@+id/profile_drawer_view"
         android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_gravity="start">
