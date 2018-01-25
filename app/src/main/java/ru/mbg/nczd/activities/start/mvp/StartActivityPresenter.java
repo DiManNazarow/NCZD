@@ -19,7 +19,9 @@ import ru.mbg.nczd.activities.auth.LoginActivity;
 import ru.mbg.nczd.activities.register.RegisterActivity;
 import ru.mbg.nczd.fragments.AboutFragment;
 import ru.mbg.nczd.fragments.AdviceFragment;
+import ru.mbg.nczd.fragments.ContactFragment;
 import ru.mbg.nczd.fragments.NewsFragment;
+import ru.mbg.nczd.fragments.ReceptionFragment;
 import ru.mbg.nczd.mvp.BaseMvpPresenter;
 import ru.mbg.nczd.utils.Actions;
 
@@ -33,6 +35,8 @@ public class StartActivityPresenter extends BaseMvpPresenter<StartView> {
     private NewsFragment mNewsFragment;
     private AboutFragment mAboutFragment;
     private AdviceFragment mAdviceFragment;
+    private ContactFragment mContactFragment;
+    private ReceptionFragment mReceptionFragment;
 
     public StartActivityPresenter(Activity activity){
         super(activity);
@@ -51,10 +55,12 @@ public class StartActivityPresenter extends BaseMvpPresenter<StartView> {
         });
     }
 
-    public void initFragments(){
+    private void initFragments(){
         mNewsFragment = NewsFragment.newInstance();
         mAboutFragment = AboutFragment.newInstance();
         mAdviceFragment = AdviceFragment.newInstance();
+        mContactFragment = ContactFragment.newInstance();
+        mReceptionFragment = ReceptionFragment.newInstance();
     }
 
     @NonNull
@@ -70,6 +76,16 @@ public class StartActivityPresenter extends BaseMvpPresenter<StartView> {
     @NonNull
     public AdviceFragment getAdviceFragment() {
         return mAdviceFragment;
+    }
+
+    @NonNull
+    public ContactFragment getContactFragment() {
+        return mContactFragment;
+    }
+
+    @NonNull
+    public ReceptionFragment getReceptionFragment() {
+        return mReceptionFragment;
     }
 
     public void registerReceivers(Context context){

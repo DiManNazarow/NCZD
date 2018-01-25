@@ -12,6 +12,7 @@
 
     <string name="sign_in">Авторизация</string>
     <string name="sign_in.login">Логин</string>
+    <string name="sign_in.omc">ОМС</string>
     <string name="sign_in.password">Пароль</string>
     <string name="sign_in.forgot_password">Я забыл пароль</string>
     <string name="sign_in.recover">Восстановить</string>
@@ -42,11 +43,77 @@
 
     <string name="error.empty_login">Логин не указан</string>
     <string name="error.empty_password">Пароль не указан</string>
+    <string name="error.empty_omc">ОМС не указан</string>
+    <string name="error.empty_confirm_password">Подтверждение пароля не введено</string>
+    <string name="error.not_equals_confirm_pass">Пароли не совпадают</string>
+    <string name="error.email_empty">E-mail не введен</string>
+
+    <string name="omc">ОМС: %1$s</string>
 
     <string name="read_more">Читать подробнее</string>
 
     <string name="advices">Советы родителям</string>
     <string name="advices.publish">Опубликованно: %1$s</string>
+
+    <string name="contacts.contacts">Контакты</string>
+    <string name="contact.how_find">Как доехать</string>
+    <string name="contact.address">119991, Россия, г.Москва, Ломоносовский просп., 2, стр.1</string>
+    <string name="contact.schedule">Мы работаем по расписанию:\nпн-пт 8:30-20:00, сб-вс 10:00-16:00</string>
+    <string name="contact.e_mail">info@nczd.ru</string>
+    <string name="contact.number">8 (925) 626-48-49</string>
+    <string name="contact.schedule_diagnostic">Консультативно-диагностический центр работает по следующему графику:\nпн-пт 8:30-20:30, сб-вс 10:00-16:00</string>
+    <string name="contact.enter_diagnostic">Вход в Консультативно-диагностический центр со стороны улицы Вавилова (см.схему)</string>
+    <string name="contact.head_doctor">Главный врач НИИ Педиатрии</string>
+    <string name="contact.head_doctor_name">Валиева Сания Ириковна</string>
+    <string name="contact.head_doctor_time">Среда: 15:00-17:00</string>
+    <string name="contact.head_doctor_number">8 (925) 626-48-49</string>
+    <string name="contact.head_doctorkdc">Главный врач КДЦ</string>
+    <string name="contact.head_doctorkdc_name">Геворкян Анаит Казаровна</string>
+    <string name="contact.head_doctorkdc_time">Четверг: с 11:00 до 13:00</string>
+    <string name="contact.head_doctorkdc_number">8 (499) 134-07-59</string>
+    <string name="contact.second_doctor">Заместитель директора ФГАУ «ННПЦЗД» Минздрава России по общим вопросам</string>
+    <string name="contact.second_doctor_name">Акулиничев Александр Александрович</string>
+    <string name="contact.second_doctor_time">Вторник: с 16:00 до 17:00</string>
+    <string name="contact.second_doctor_number">8 (499) 134-07-28</string>
+    <string name="contact.second_doctor_science">Заместитель директора по научной работе — директор НИИ Педиатрии</string>
+    <string name="contact.second_doctor_name_science">Намазова-Баранова Лейла Сеймуровна</string>
+    <string name="contact.second_doctor_time_science">Пятница: с 15:00 до 16:00</string>
+    <string name="contact.second_doctor_number_science">8 (499) 783-27-93</string>
+    <string name="contact.head_doctor_minzdrav">Директор ФГАУ «ННПЦЗД» Минздрава России</string>
+    <string name="contact.head_doctor_name_minzdrav">Баранов Александр Александрович</string>
+    <string name="contact.head_doctor_time_minzdrav">Вторник: с 11:00 до 13:00</string>
+    <string name="contact.head_doctor_number_minzdrav">8 (499) 134-30-83</string>
+    <string name="contact.info">Личный прием граждан осуществляется администрацией ФГАУ «ННПЦЗД» Минздрава России (НЦЗД) по вопросам, относящимся
+к их компетенции, в соответствии с установленным графиком.\n\nПрием граждан директором ФГАУ «ННПЦЗД» Минздрава России осуществляется после рассмотрения вопроса гражданина в ходе личного приема главным врачом или заместителем директора, к компетенции которых относится интересующий гражданина вопрос.</string>
+
+    <string name="reception.consultation">Консультация</string>
+    <string name="reception.consultation_number">8 (925) 626-48-49</string>
+    <string name="reception.reception">Запись на прием</string>
+    <string name="reception.emergency_hospitalization">Экстренная госпитализация</string>
+    <string name="reception.emergency_hospitalization_number">8 (495) 967-14-21</string>
+    <string name="reception.emergency_hospitalization_info">Отделение диагностики и восстановительного лечения</string>
+    <string name="reception.emergency_surgery">Экстренная хирургия</string>
+    <string name="reception.emergency_surgery_number">8 (925) 626-48-49</string>
+    <string name="reception.emergency_surgery_info">Отделение неотложной хирургии</string>
+    <string name="reception.urgent_pediatric_care">Неотложная педиатрическая помощь</string>
+    <string name="reception.urgent_pediatric_care_number">8 (499) 134-08-39</string>
+    <string name="reception.urgent_pediatric_care_info">Отделение неотложной помощи</string>
+    <string name="reception.reception_online">Записаться online</string>
+    <string name="reception.chose">Выберите услугу:</string>
+    <string name="reception.cosmetologist">Косметолог</string>
+    <string name="reception.neurologist">Невролог</string>
+    <string name="reception.psychologist">Психолог</string>
+    <string name="reception.mammologist">Маммолог</string>
+    <string name="reception.ct_scan">Компьютерная томография</string>
+    <string name="reception.mri">МРТ</string>
+    <string name="reception.x_ray">Рентген</string>
+
+    <string name="how_find.address">119991, Россия, г. Москва, Ломоносовский проспект, 2, стр.1</string>
+    <string name="how_find.type">1. Консультативно-диагностический центр\n2. Клиника высоких технологий\n3. Медицинский центр по внебюджетной деятельности</string>
+    <string name="how_find.public_transport_title">Проезд общественным транспортом</string>
+    <string name="how_find.public_transport_info">от метро Профсоюзная — авт. № 130, 67, трол. № 49 до остановки «Черемушкинский рынок»;\nот метро Университет — трамвай любого маршрута, а также авт. № 130, 103, 67 до остановки «Черемушкинский рынок».\nНа период строительства вход в КДЦ и реабилитационный центр со стороны Ломоносовского проспекта (через арку).</string>
+    <string name="how_find.personal_transport_title">Проезд частным транспортом</string>
+    <string name="how_find.personal_transport_info">по ул. Вавилова:\nпо направлению из центра — до её пересечения с Ломоносовским проспектом,\nпо направлению в центр — сразу после пересечения с Ломоносовским проспектом.</string>
 
     <string name="about">О Центре</string>
     <string name="about.name">Федеральное государственное автономное научное учреждение «Национальный медицинский исследовательский центр здоровья детей» Министерства здравоохранения Российской Федерации</string>

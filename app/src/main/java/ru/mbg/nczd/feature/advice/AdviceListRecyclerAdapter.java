@@ -1,14 +1,12 @@
 package ru.mbg.nczd.feature.advice;
 
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import ru.mbg.nczd.R;
-import ru.mbg.nczd.feature.adapters.BaseRecyclerAdapter;
-import ru.mbg.nczd.feature.adapters.BaseViewHolder;
+import ru.mbg.nczd.feature.recyclerviews.adapters.BaseRecyclerAdapter;
+import ru.mbg.nczd.feature.recyclerviews.holders.BaseViewHolder;
 import ru.mbg.nczd.feature.advice.models.Advice;
 
 /**

@@ -21,6 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.mbg.nczd.R;
 import ru.mbg.nczd.activities.BaseActivity;
+import ru.mbg.nczd.activities.auth.LoginActivity;
 import ru.mbg.nczd.activities.start.mvp.StartActivityPresenter;
 import ru.mbg.nczd.activities.start.mvp.StartView;
 import ru.mbg.nczd.utils.Actions;
@@ -104,12 +105,14 @@ public class StartActivity extends BaseActivity implements StartView, MainBottom
 
     @Override
     public void onReceptionClick() {
-
+        showFragment(mStartActivityPresenter.getReceptionFragment(), mStartActivityPresenter.getReceptionFragment().TAG);
+        setToolbarTitle(R.string.reception_reception);
     }
 
     @Override
     public void onContactClick() {
-
+        showFragment(mStartActivityPresenter.getContactFragment(), mStartActivityPresenter.getContactFragment().TAG);
+        setToolbarTitle(R.string.contacts_contacts);
     }
 
     @Override
@@ -124,11 +127,18 @@ public class StartActivity extends BaseActivity implements StartView, MainBottom
         fragmentTransaction.replace(R.id.content_container, fragment, tag).commit();
     }
 
+    private void showFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.content_container, fragment).commit();
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK && requestCode == Actions.LOGIN_REQUEST_CODE){
-            mProfileDrawerView.initUserContent();
+            long id = data.getLongExtra(LoginActivity.USER_ID_ARG, -1);
+            mProfileDrawerView.initUserContent(id);
         }
     }
 

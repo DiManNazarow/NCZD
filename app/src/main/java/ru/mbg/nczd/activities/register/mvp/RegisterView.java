@@ -7,4 +7,15 @@ import com.arellomobile.mvp.MvpView;
  */
 
 public interface RegisterView extends MvpView {
+
+    void onEmailError(String text);
+
+    void onLoginError(String text);
+
+    void onOmcError(String text);
+
+    void onPasswordError(String text);
+
+    void onConfirmPasswordError(String text);
+
 }

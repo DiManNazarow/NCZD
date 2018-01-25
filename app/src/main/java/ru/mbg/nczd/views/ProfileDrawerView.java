@@ -9,8 +9,11 @@ import android.widget.LinearLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import ru.mbg.nczd.App;
 import ru.mbg.nczd.R;
+import ru.mbg.nczd.db.models.User;
 import ru.mbg.nczd.feature.profile.ProfileContentView;
+import ru.mbg.nczd.feature.profile.ProfileHeaderView;
 
 /**
  * Created by Дмитрий on 14.01.2018.
@@ -20,6 +23,8 @@ public class ProfileDrawerView extends LinearLayout {
 
     @BindView(R.id.profile_content_view)
     protected ProfileContentView mProfileContentView;
+    @BindView(R.id.profile_header_view)
+    protected ProfileHeaderView mProfileHeaderView;
 
     private View mRootView;
 
@@ -43,7 +48,14 @@ public class ProfileDrawerView extends LinearLayout {
         ButterKnife.bind(this, mRootView);
     }
 
-    public void initUserContent(){
+    public void initUserContent(long userId){
+
+        User user = App.getAppDatabase().getUserDao().get(userId);
+        if (user != null){
+            mProfileHeaderView.setNameText(user.getLogin());
+            mProfileHeaderView.setOmcText(getContext().getString(R.string.omc, user.getOmc()));
+        }
+
         mProfileContentView.initUserContent();
     }
 

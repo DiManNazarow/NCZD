@@ -21,6 +21,8 @@ import ru.mbg.nczd.activities.auth.mvp.LoginView;
 
 public class LoginActivity extends BaseActivity implements LoginView {
 
+    public static final String USER_ID_ARG = "user_id_arg";
+
     @BindView(R.id.login_text_input_layout)
     protected TextInputLayout mLoginInput;
     @BindView(R.id.password_text_input_layout)
@@ -54,8 +56,10 @@ public class LoginActivity extends BaseActivity implements LoginView {
     }
 
     @Override
-    public void onLogin() {
-        setResult(Activity.RESULT_OK, new Intent());
+    public void onLogin(long userId) {
+        Intent intent = new Intent();
+        intent.putExtra(USER_ID_ARG, userId);
+        setResult(Activity.RESULT_OK, intent);
         finish();
     }
 

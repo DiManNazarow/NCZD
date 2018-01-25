@@ -1,19 +1,14 @@
 package ru.mbg.nczd.feature.news;
 
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import ru.mbg.nczd.R;
-import ru.mbg.nczd.feature.adapters.BaseRecyclerAdapter;
-import ru.mbg.nczd.feature.adapters.BaseViewHolder;
+import ru.mbg.nczd.feature.recyclerviews.adapters.BaseRecyclerAdapter;
+import ru.mbg.nczd.feature.recyclerviews.holders.BaseViewHolder;
 import ru.mbg.nczd.feature.news.models.News;
 
 /**

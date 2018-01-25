@@ -12,8 +12,10 @@ import android.widget.TextView;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 
+import ru.mbg.nczd.App;
 import ru.mbg.nczd.R;
 import ru.mbg.nczd.activities.recovery.RecoveryActivity;
+import ru.mbg.nczd.db.models.User;
 import ru.mbg.nczd.mvp.BaseMvpPresenter;
 import ru.mbg.nczd.utils.AppTextUtils;
 
@@ -58,7 +60,7 @@ public class LoginActivityPresenter extends BaseMvpPresenter<LoginView> {
                     return;
                 }
                 if (!AppTextUtils.isEmpty(mLogin) && !AppTextUtils.isEmpty(mPassword)){
-                    getViewState().onLogin();
+                    login();
                 }
             }
         });
@@ -67,6 +69,13 @@ public class LoginActivityPresenter extends BaseMvpPresenter<LoginView> {
     public void openRecoverActivity(){
         Intent intent = new Intent(getActivity(), RecoveryActivity.class);
         getActivity().startActivity(intent);
+    }
+
+    private void login(){
+        User user = App.getAppDatabase().getUserDao().get(mLogin, mPassword);
+        if (user != null){
+            getViewState().onLogin(user.getId());
+        }
     }
 
     private abstract class OnTextChangeListener implements TextWatcher {

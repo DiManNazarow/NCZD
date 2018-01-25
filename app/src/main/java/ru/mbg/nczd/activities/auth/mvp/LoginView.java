@@ -10,7 +10,7 @@ import com.arellomobile.mvp.MvpView;
 
 public interface LoginView extends MvpView {
 
-    void onLogin();
+    void onLogin(long userId);
 
     void onLoginError(@Nullable String error);
 

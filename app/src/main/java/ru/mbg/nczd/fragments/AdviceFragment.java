@@ -1,11 +1,8 @@
 package ru.mbg.nczd.fragments;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.PresenterType;
@@ -13,9 +10,9 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 
 import java.util.List;
 
-import ru.mbg.nczd.R;
 import ru.mbg.nczd.feature.advice.AdviceListRecyclerAdapter;
 import ru.mbg.nczd.feature.advice.models.Advice;
+import ru.mbg.nczd.feature.recyclerviews.RecyclerFragment;
 import ru.mbg.nczd.fragments.mvp.AdviceFragmentPresenter;
 import ru.mbg.nczd.fragments.mvp.AdviceView;
 

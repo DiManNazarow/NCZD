@@ -13,6 +13,7 @@ import java.util.List;
 
 import ru.mbg.nczd.feature.news.NewsListRecyclerAdapter;
 import ru.mbg.nczd.feature.news.models.News;
+import ru.mbg.nczd.feature.recyclerviews.RecyclerFragment;
 import ru.mbg.nczd.fragments.mvp.NewsFragmentPresenter;
 import ru.mbg.nczd.fragments.mvp.NewsView;
 

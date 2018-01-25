@@ -14,6 +14,8 @@ public class User {
 
     private String login;
 
+    private String omc;
+
     private String password;
 
     private String email;
@@ -32,6 +34,14 @@ public class User {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public String getOmc() {
+        return omc;
+    }
+
+    public void setOmc(String omc) {
+        this.omc = omc;
     }
 
     public String getPassword() {

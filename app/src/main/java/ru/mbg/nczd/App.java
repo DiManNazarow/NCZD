@@ -11,7 +11,7 @@ import ru.mbg.nczd.db.AppDatabase;
 
 public class App extends Application {
 
-    private AppDatabase mAppDatabase;
+    private static AppDatabase mAppDatabase;
 
     @Override
     public void onCreate() {
@@ -23,7 +23,7 @@ public class App extends Application {
         return Room.databaseBuilder(this, AppDatabase.class, "AppDataBase").fallbackToDestructiveMigration().allowMainThreadQueries().build();
     }
 
-    public AppDatabase getAppDatabase(){
+    public static AppDatabase getAppDatabase(){
         return mAppDatabase;
     }
 

@@ -1,4 +1,4 @@
-package ru.mbg.nczd.fragments;
+package ru.mbg.nczd.feature.recyclerviews;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

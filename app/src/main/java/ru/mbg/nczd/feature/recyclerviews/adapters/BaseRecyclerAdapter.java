@@ -1,13 +1,12 @@
-package ru.mbg.nczd.feature.adapters;
+package ru.mbg.nczd.feature.recyclerviews.adapters;
 
 import android.support.v7.widget.RecyclerView;
-import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import ru.mbg.nczd.feature.BaseModel;
-import ru.mbg.nczd.feature.news.models.News;
+import ru.mbg.nczd.feature.recyclerviews.holders.BaseViewHolder;
 
 /**
  * Created by Дмитрий on 20.01.2018.

@@ -10,7 +10,7 @@ import android.view.View;
 
 public class SpacingItemDecoration extends RecyclerView.ItemDecoration {
 
-    private final int VERTICAL_SPACE = 32;
+    private final int VERTICAL_SPACE = 18;
 
     private final int verticalSpaceHeight;
 
