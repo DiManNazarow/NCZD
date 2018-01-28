@@ -12,6 +12,6 @@ public interface StartView extends MvpView {
 
     void onLogin();
 
-    void onRegister();
+    void onRegister(long userId);
 
 }

@@ -96,7 +96,9 @@ public class PersonalInfoActivityPresenter extends BaseMvpPresenter<PersonalInfo
             user.setOmc(mOmc);
             user.setNumber(mNumber);
             App.getAppDatabase().getUserDao().insert(user);
-            LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(new Intent(Params.PERSONAL_INFO_SUCCESS_UPDATE));
+            Intent intent = new Intent(Params.PERSONAL_INFO_SUCCESS_UPDATE);
+            intent.putExtra(Params.USER_ID_ARG, userId);
+            LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
             getActivity().finish();
         }
     }

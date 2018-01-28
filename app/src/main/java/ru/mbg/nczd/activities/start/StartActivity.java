@@ -55,6 +55,7 @@ public class StartActivity extends BaseActivity implements StartView, MainBottom
         mBottomNavBar.setNewsSelected();
         showFragment(mStartActivityPresenter.getNewsFragment(), mStartActivityPresenter.getNewsFragment().TAG);
         setToolbarTitle(R.string.news);
+        mStartActivityPresenter.registerReceivers(this);
     }
 
     @Override
@@ -65,12 +66,18 @@ public class StartActivity extends BaseActivity implements StartView, MainBottom
     @Override
     public void onResume(){
         super.onResume();
-        mStartActivityPresenter.registerReceivers(this);
+        //mStartActivityPresenter.registerReceivers(this);
     }
 
     @Override
     public void onStop(){
         super.onStop();
+        //mStartActivityPresenter.unregisterReceivers(this);
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
         mStartActivityPresenter.unregisterReceivers(this);
     }
 
@@ -85,8 +92,8 @@ public class StartActivity extends BaseActivity implements StartView, MainBottom
     }
 
     @Override
-    public void onRegister() {
-        Toast.makeText(this, "OnRegister", Toast.LENGTH_SHORT).show();
+    public void onRegister(long userId) {
+        mProfileDrawerView.initUserContent(userId);
     }
 
     @Override

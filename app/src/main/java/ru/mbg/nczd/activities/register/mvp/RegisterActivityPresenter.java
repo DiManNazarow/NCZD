@@ -94,7 +94,6 @@ public class RegisterActivityPresenter extends BaseMvpPresenter<RegisterView> {
             return;
         }
         mUserId = App.getAppDatabase().getUserDao().insert(createUser());
-        LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(new Intent(Params.REGISTER_SUCCESS));
         SuccessRegisterAlert.show(getActivity(), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,6 +107,9 @@ public class RegisterActivityPresenter extends BaseMvpPresenter<RegisterView> {
         }, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(Params.REGISTER_SUCCESS);
+                intent.putExtra(Params.USER_ID_ARG, mUserId);
+                LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
                 getActivity().finish();
             }
         });
