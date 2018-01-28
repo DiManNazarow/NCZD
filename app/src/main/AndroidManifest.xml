@@ -23,6 +23,10 @@
         </activity>
         <activity android:name=".activities.recovery.RecoveryActivity">
         </activity>
+        <activity android:name=".activities.personalinfo.PersonalInfoActivity">
+        </activity>
+        <activity android:name=".reception.ReceptionActivity">
+        </activity>
     </application>
 
 </manifest>

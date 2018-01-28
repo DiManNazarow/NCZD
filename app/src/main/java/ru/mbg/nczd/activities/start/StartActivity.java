@@ -5,14 +5,12 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.widget.Toast;
 
-import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.PresenterType;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
@@ -24,7 +22,7 @@ import ru.mbg.nczd.activities.BaseActivity;
 import ru.mbg.nczd.activities.auth.LoginActivity;
 import ru.mbg.nczd.activities.start.mvp.StartActivityPresenter;
 import ru.mbg.nczd.activities.start.mvp.StartView;
-import ru.mbg.nczd.utils.Actions;
+import ru.mbg.nczd.utils.Params;
 import ru.mbg.nczd.views.MainBottomNavBar;
 import ru.mbg.nczd.views.ProfileDrawerView;
 
@@ -136,7 +134,7 @@ public class StartActivity extends BaseActivity implements StartView, MainBottom
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == Activity.RESULT_OK && requestCode == Actions.LOGIN_REQUEST_CODE){
+        if (resultCode == Activity.RESULT_OK && requestCode == Params.LOGIN_REQUEST_CODE){
             long id = data.getLongExtra(LoginActivity.USER_ID_ARG, -1);
             mProfileDrawerView.initUserContent(id);
         }

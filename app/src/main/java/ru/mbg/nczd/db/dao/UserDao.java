@@ -2,6 +2,7 @@ package ru.mbg.nczd.db.dao;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
 import ru.mbg.nczd.db.models.User;
@@ -12,8 +13,8 @@ import ru.mbg.nczd.db.models.User;
 @Dao
 public interface UserDao {
 
-    @Insert
-    void insert(User user);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    Long insert(User user);
 
     @Query("SELECT * FROM User WHERE user.login = :login AND user.password = :password")
     User get(String login, String password);

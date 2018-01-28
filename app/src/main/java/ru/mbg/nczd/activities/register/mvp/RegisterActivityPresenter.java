@@ -6,16 +6,20 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 
 import com.arellomobile.mvp.InjectViewState;
 
 import ru.mbg.nczd.App;
 import ru.mbg.nczd.R;
 import ru.mbg.nczd.activities.auth.LoginActivity;
+import ru.mbg.nczd.activities.personalinfo.PersonalInfoActivity;
+import ru.mbg.nczd.activities.personalinfo.mvp.PersonalInfoView;
 import ru.mbg.nczd.db.models.User;
 import ru.mbg.nczd.mvp.BaseMvpPresenter;
-import ru.mbg.nczd.utils.Actions;
+import ru.mbg.nczd.utils.Params;
 import ru.mbg.nczd.utils.AppTextUtils;
+import ru.mbg.nczd.views.SuccessRegisterAlert;
 
 /**
  * Created by Дмитрий on 18.01.2018.
@@ -24,16 +28,20 @@ import ru.mbg.nczd.utils.AppTextUtils;
 public class RegisterActivityPresenter extends BaseMvpPresenter<RegisterView> {
 
     private String mEmail;
+
     private String mLogin;
-    private String mOmc;
+
     private String mPassword;
+
     private String mConfirmPassword;
+
+    private long mUserId = Long.MIN_VALUE;
 
     public RegisterActivityPresenter(Activity activity){
         super(activity);
     }
 
-    public void setupViews(AppCompatEditText email, AppCompatEditText login, AppCompatEditText omc, AppCompatEditText password, AppCompatEditText confirmPassword){
+    public void setupViews(AppCompatEditText email, AppCompatEditText login, AppCompatEditText password, AppCompatEditText confirmPassword){
         email.addTextChangedListener(new OnTextChangeListener() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -46,13 +54,6 @@ public class RegisterActivityPresenter extends BaseMvpPresenter<RegisterView> {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 mLogin = s.toString();
                 getViewState().onLoginError(null);
-            }
-        });
-        omc.addTextChangedListener(new OnTextChangeListener() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mOmc = s.toString();
-                getViewState().onOmcError(null);
             }
         });
         password.addTextChangedListener(new OnTextChangeListener() {
@@ -80,10 +81,6 @@ public class RegisterActivityPresenter extends BaseMvpPresenter<RegisterView> {
             getViewState().onLoginError(getActivity().getString(R.string.error_empty_login));
             return;
         }
-        if (AppTextUtils.isEmpty(mOmc)){
-            getViewState().onOmcError(getActivity().getString(R.string.error_empty_omc));
-            return;
-        }
         if (AppTextUtils.isEmpty(mPassword)){
             getViewState().onPasswordError(getActivity().getString(R.string.error_empty_password));
             return;
@@ -96,9 +93,24 @@ public class RegisterActivityPresenter extends BaseMvpPresenter<RegisterView> {
             getViewState().onConfirmPasswordError(getActivity().getString(R.string.error_not_equals_confirm_pass));
             return;
         }
-        App.getAppDatabase().getUserDao().insert(createUser());
-        LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(new Intent(Actions.REGISTER_SUCCESS));
-        getActivity().finish();
+        mUserId = App.getAppDatabase().getUserDao().insert(createUser());
+        LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(new Intent(Params.REGISTER_SUCCESS));
+        SuccessRegisterAlert.show(getActivity(), new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mUserId != Long.MIN_VALUE){
+                    Intent intent = new Intent(getActivity(), PersonalInfoActivity.class);
+                    intent.putExtra(Params.USER_ID_ARG, mUserId);
+                    getActivity().startActivity(intent);
+                    getActivity().finish();
+                }
+            }
+        }, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
     }
 
     public void openSignInScreen(){
@@ -110,7 +122,6 @@ public class RegisterActivityPresenter extends BaseMvpPresenter<RegisterView> {
         User user = new User();
         user.setLogin(mLogin);
         user.setEmail(mEmail);
-        user.setOmc(mOmc);
         user.setPassword(mPassword);
         return user;
     }

@@ -7,6 +7,8 @@
     <string name="profile.sign_in">Войти</string>
     <string name="profile.register">Зарегистрироваться</string>
     <string name="profile.settings">Настроики</string>
+    <string name="profile.initials">%1$s %2$s</string>
+    <string name="profile.empty_omc">ОМС: не задан</string>
 
     <string name="start_activity.title">Контакты</string>
 
@@ -47,6 +49,11 @@
     <string name="error.empty_confirm_password">Подтверждение пароля не введено</string>
     <string name="error.not_equals_confirm_pass">Пароли не совпадают</string>
     <string name="error.email_empty">E-mail не введен</string>
+    <string name="error.empty_first_name">Имя не указана</string>
+    <string name="error.empty_second_name">Фамилия не указана</string>
+    <string name="error.empty_patronymic">Отчество не указано</string>
+    <string name="error.empty_date_birth">Дата рождения не указана</string>
+    <string name="error.empty_number">Номер не указан</string>
 
     <string name="omc">ОМС: %1$s</string>
 
@@ -107,6 +114,13 @@
     <string name="reception.ct_scan">Компьютерная томография</string>
     <string name="reception.mri">МРТ</string>
     <string name="reception.x_ray">Рентген</string>
+    <string name="reception.apply_now">Подать заявку</string>
+    <string name="reception.receprion_type">Тип приема</string>
+    <string name="reception.type_1">Повторный</string>
+    <string name="reception.reception_time">Желаемое время приема</string>
+    <string name="reception.purpose_of_reception">Цель приема</string>
+    <string name="reception.purpose_1">Консультация врача</string>
+    <string name="reception.agree_process_personal_data">Согласен на обработку персональных данных</string>
 
     <string name="how_find.address">119991, Россия, г. Москва, Ломоносовский проспект, 2, стр.1</string>
     <string name="how_find.type">1. Консультативно-диагностический центр\n2. Клиника высоких технологий\n3. Медицинский центр по внебюджетной деятельности</string>
@@ -138,6 +152,21 @@
     <string name="about.end">Специалисты Центра являются ключевыми разработчиками профессионального стандарта «Врач педиатр участковый», утвержденного в 2016 г.\n
 На базе ФГАУ «ННПЦЗД» Минздрава России осуществляет свою деятельность рабочая группа «Здравоохранение, дружественное к детям и здоровый образ жизни» Координационного совета при Президенте Российской Федерации по реализации важнейших положений Национальной стратегии действий интересах детей на 2012 — 2017 годы. В соответствии с письмом Минздрава России от 15.01.2015 г. № 15-1/49-07 ФГАУ «Национальный научно-практический центр здоровья детей» Минздрава России по направлению «педиатрия» осуществляет курацию Южного, Уральского, Дальневосточного федеральных округов, Республики Крым, Московской области, городов Москвы и Севастополя.\n
 За большой вклад в развитие здравоохранения, медицинской науки и многолетнюю добросовестную работу директор Центра, академик РАН А.А.Баранов награжден Орденом «За заслуги перед Отечеством II степени» (Указ Президента Российской Федерации № 695 от 20 декабря 2016 г.)</string>
+
+    <string name="success_register.congratulations">Поздравляем!</string>
+    <string name="success_register.we_register">Мы зарегистрировали ваш аккаунт</string>
+    <string name="success_register.info">Чтобы вам было удобно пользоваться приложением, рекомендуем заполнить персональные контактные данные.</string>
+    <string name="success_register_fill_info">Заполнить контактные данные</string>
+    <string name="success_register.pass">Пропустить</string>
+
+    <string name="personal_info">Контактные данные</string>
+    <string name="personal_info.first_name">Имя</string>
+    <string name="personal_info.second_name">Фамилия</string>
+    <string name="personal_info.patronymic">Отчество</string>
+    <string name="personal_info.date_birth">Дата рождения</string>
+    <string name="personal_info.omc">ОМС</string>
+    <string name="personal_info.number">Телефон</string>
+    <string name="personal_info.save">СОХРАНИТЬ</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

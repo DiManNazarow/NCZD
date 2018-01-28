@@ -14,6 +14,7 @@ import ru.mbg.nczd.R;
 import ru.mbg.nczd.db.models.User;
 import ru.mbg.nczd.feature.profile.ProfileContentView;
 import ru.mbg.nczd.feature.profile.ProfileHeaderView;
+import ru.mbg.nczd.utils.AppTextUtils;
 
 /**
  * Created by Дмитрий on 14.01.2018.
@@ -52,11 +53,23 @@ public class ProfileDrawerView extends LinearLayout {
 
         User user = App.getAppDatabase().getUserDao().get(userId);
         if (user != null){
-            mProfileHeaderView.setNameText(user.getLogin());
-            mProfileHeaderView.setOmcText(getContext().getString(R.string.omc, user.getOmc()));
+            if (isUserInitialsEmpty(user)){
+                mProfileHeaderView.setNameText(getContext().getString(R.string.profile_good_day));
+            } else {
+                mProfileHeaderView.setNameText(getContext().getString(R.string.profile_initials, user.getFirstName(), user.getSecondName()));
+            }
+            if (AppTextUtils.isEmpty(user.getOmc())){
+                mProfileHeaderView.setOmcText(getContext().getString(R.string.profile_empty_omc));
+            } else {
+                mProfileHeaderView.setOmcText(getContext().getString(R.string.omc, user.getOmc()));
+            }
         }
 
         mProfileContentView.initUserContent();
+    }
+
+    private boolean isUserInitialsEmpty(User user){
+        return AppTextUtils.isEmpty(user.getFirstName()) && AppTextUtils.isEmpty(user.getPatronymic());
     }
 
     public void initSignInContent(){

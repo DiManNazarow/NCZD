@@ -12,7 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.arellomobile.mvp.InjectViewState;
-import com.arellomobile.mvp.MvpPresenter;
 
 import ru.mbg.nczd.R;
 import ru.mbg.nczd.activities.auth.LoginActivity;
@@ -23,7 +22,7 @@ import ru.mbg.nczd.fragments.ContactFragment;
 import ru.mbg.nczd.fragments.NewsFragment;
 import ru.mbg.nczd.fragments.ReceptionFragment;
 import ru.mbg.nczd.mvp.BaseMvpPresenter;
-import ru.mbg.nczd.utils.Actions;
+import ru.mbg.nczd.utils.Params;
 
 /**
  * Created by Дмитрий on 14.01.2018.
@@ -90,10 +89,10 @@ public class StartActivityPresenter extends BaseMvpPresenter<StartView> {
 
     public void registerReceivers(Context context){
         LocalBroadcastManager manager = LocalBroadcastManager.getInstance(context);
-        manager.registerReceiver(mLoginSuccessReceiver, new IntentFilter(Actions.LOGIN_SUCCESS));
-        manager.registerReceiver(mRegisterSuccessReceiver, new IntentFilter(Actions.REGISTER_SUCCESS));
-        manager.registerReceiver(mLoginActionReceiver, new IntentFilter(Actions.LOGIN_ACTION));
-        manager.registerReceiver(mRegisterActionReceiver, new IntentFilter(Actions.REGISTER_ACTION));
+        manager.registerReceiver(mLoginSuccessReceiver, new IntentFilter(Params.LOGIN_SUCCESS));
+        manager.registerReceiver(mRegisterSuccessReceiver, new IntentFilter(Params.REGISTER_SUCCESS));
+        manager.registerReceiver(mLoginActionReceiver, new IntentFilter(Params.LOGIN_ACTION));
+        manager.registerReceiver(mRegisterActionReceiver, new IntentFilter(Params.REGISTER_ACTION));
     }
 
     public void unregisterReceivers(Context context){
@@ -122,7 +121,7 @@ public class StartActivityPresenter extends BaseMvpPresenter<StartView> {
         @Override
         public void onReceive(Context context, Intent intent) {
             Intent openLoginActivity = new Intent(getActivity(), LoginActivity.class);
-            getActivity().startActivityForResult(openLoginActivity, Actions.LOGIN_REQUEST_CODE);
+            getActivity().startActivityForResult(openLoginActivity, Params.LOGIN_REQUEST_CODE);
         }
     };
 
@@ -130,7 +129,7 @@ public class StartActivityPresenter extends BaseMvpPresenter<StartView> {
         @Override
         public void onReceive(Context context, Intent intent) {
             Intent openRegisterActivity = new Intent(getActivity(), RegisterActivity.class);
-            getActivity().startActivityForResult(openRegisterActivity, Actions.REGISTER_REQUEST_CODE);
+            getActivity().startActivityForResult(openRegisterActivity, Params.REGISTER_REQUEST_CODE);
         }
     };
 

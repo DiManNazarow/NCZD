@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.PresenterType;
@@ -36,10 +35,10 @@ public class LoginActivity extends BaseActivity implements LoginView {
     protected Button mSignInButton;
 
     @InjectPresenter(type = PresenterType.LOCAL)
-    LoginActivityPresenter mLoginActivityPresenter;
+    public LoginActivityPresenter mPresenter;
 
     @ProvidePresenter(type = PresenterType.LOCAL)
-    LoginActivityPresenter provideLoginActivityPresenter(){
+    public LoginActivityPresenter provideLoginActivityPresenter() {
         return new LoginActivityPresenter(this);
     }
 
@@ -47,7 +46,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_login);
         super.onCreate(savedInstanceState);
-        mLoginActivityPresenter.setupViews(mLoginEditText, mPasswordEditText, mSignInButton);
+        mPresenter.setupViews(mLoginEditText, mPasswordEditText, mSignInButton);
     }
 
     @Override
@@ -75,7 +74,6 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @OnClick(R.id.recover_text_view)
     public void onRecoverClick() {
-        mLoginActivityPresenter.openRecoverActivity();
+        mPresenter.openRecoverActivity();
     }
-
 }

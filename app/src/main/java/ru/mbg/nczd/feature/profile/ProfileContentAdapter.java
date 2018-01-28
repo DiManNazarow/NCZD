@@ -11,7 +11,7 @@ import android.widget.Button;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.mbg.nczd.R;
-import ru.mbg.nczd.utils.Actions;
+import ru.mbg.nczd.utils.Params;
 
 /**
  * Created by Дмитрий on 14.01.2018.
@@ -85,14 +85,14 @@ public class ProfileContentAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             mSignInButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(Actions.LOGIN_ACTION);
+                    Intent intent = new Intent(Params.LOGIN_ACTION);
                     LocalBroadcastManager.getInstance(parentView.getContext()).sendBroadcast(intent);
                 }
             });
             mRegisterButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(Actions.REGISTER_ACTION);
+                    Intent intent = new Intent(Params.REGISTER_ACTION);
                     LocalBroadcastManager.getInstance(parentView.getContext()).sendBroadcast(intent);
                 }
             });
