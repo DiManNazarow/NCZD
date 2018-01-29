@@ -7,11 +7,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+
+import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import ru.mbg.nczd.App;
 import ru.mbg.nczd.R;
+import ru.mbg.nczd.db.UserManager;
+import ru.mbg.nczd.db.models.Reception;
+import ru.mbg.nczd.db.models.User;
+import ru.mbg.nczd.utils.DateUtils;
 import ru.mbg.nczd.utils.Params;
+import ru.mbg.nczd.views.SimpleReceptionInfo;
 
 /**
  * Created by Дмитрий on 14.01.2018.
@@ -101,8 +112,48 @@ public class ProfileContentAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     class ReceptionsHolder extends RecyclerView.ViewHolder {
 
-        public ReceptionsHolder(ViewGroup parentView) {
+        @BindView(R.id.reception_button)
+        Button mReceptionButton;
+        @BindView(R.id.add_reception_button)
+        ImageButton mAddReceptionButton;
+        @BindView(R.id.container)
+        LinearLayout mContainer;
+
+        User mUser;
+
+        public ReceptionsHolder(final ViewGroup parentView) {
             super(LayoutInflater.from(parentView.getContext()).inflate(R.layout.layout_receptions, parentView, false));
+            ButterKnife.bind(this, itemView);
+            mReceptionButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    LocalBroadcastManager.getInstance(parentView.getContext()).sendBroadcast(new Intent(Params.RECEPTION_ACTION));
+                }
+            });
+            mAddReceptionButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    LocalBroadcastManager.getInstance(parentView.getContext()).sendBroadcast(new Intent(Params.RECEPTION_ACTION));
+                }
+            });
+            mUser = UserManager.instance().getUser();
+            if (mUser.isUserHaveReception()){
+                mReceptionButton.setVisibility(View.GONE);
+                mAddReceptionButton.setVisibility(View.VISIBLE);
+                addReceptionInfo(mContainer);
+            }
+        }
+
+        void addReceptionInfo(LinearLayout container){
+            container.removeAllViews();
+            List<Reception> r = App.getAppDatabase().getReceptionDao().getAll();
+            for (Reception reception : mUser.getReceptions()){
+                SimpleReceptionInfo info = new SimpleReceptionInfo(container.getContext());
+                info.setDateText(DateUtils.getSimpleReceptionInfoDate(container.getContext(), reception.getDate()));
+                info.setTimeText(reception.getTime());
+                info.setNameText(Params.RECEPTION_TYPE.getById(reception.getTypeId()).getName(container.getContext()));
+                container.addView(info);
+            }
         }
     }
 

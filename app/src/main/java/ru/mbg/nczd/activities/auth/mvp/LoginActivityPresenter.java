@@ -7,15 +7,14 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.arellomobile.mvp.InjectViewState;
-import com.arellomobile.mvp.MvpPresenter;
 
 import ru.mbg.nczd.App;
 import ru.mbg.nczd.R;
 import ru.mbg.nczd.activities.recovery.RecoveryActivity;
-import ru.mbg.nczd.db.models.User;
+import ru.mbg.nczd.db.UserManager;
+import ru.mbg.nczd.db.models.UserEntity;
 import ru.mbg.nczd.mvp.BaseMvpPresenter;
 import ru.mbg.nczd.utils.AppTextUtils;
 
@@ -72,8 +71,9 @@ public class LoginActivityPresenter extends BaseMvpPresenter<LoginView> {
     }
 
     private void login(){
-        User user = App.getAppDatabase().getUserDao().get(mLogin, mPassword);
+        UserEntity user = App.getAppDatabase().getUserDao().get(mLogin, mPassword);
         if (user != null){
+            UserManager.instance().setUserId(user.getId());
             getViewState().onLogin(user.getId());
         }
     }

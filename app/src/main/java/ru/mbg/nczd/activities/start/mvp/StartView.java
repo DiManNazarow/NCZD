@@ -14,4 +14,8 @@ public interface StartView extends MvpView {
 
     void onRegister(long userId);
 
+    void onReceptionAction();
+
+    void onReceptionAdd();
+
 }

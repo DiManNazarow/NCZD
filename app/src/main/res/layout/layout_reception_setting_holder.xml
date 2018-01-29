@@ -4,18 +4,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     app:cardCornerRadius="4dp"
     app:cardElevation="4dp">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp">
 
         <ru.mbg.nczd.views.SpinnerItem
             android:id="@+id/reception_type_spinner"
             android:layout_width="0dp"
-            android:layout_height="58dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -23,42 +25,70 @@
 
         </ru.mbg.nczd.views.SpinnerItem>
 
-        <!--<ru.mbg.nczd.views.SpinnerItem-->
-            <!--android:id="@+id/purpose_spinner"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="58dp"-->
-            <!--android:layout_marginEnd="16dp"-->
-            <!--android:layout_marginStart="16dp"-->
-            <!--app:layout_constraintEnd_toEndOf="parent"-->
-            <!--app:layout_constraintHorizontal_bias="0.0"-->
-            <!--app:layout_constraintStart_toStartOf="parent"-->
-            <!--tools:layout_editor_absoluteY="211dp">-->
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reception_type_spinner"
+            android:baselineAligned="false">
 
-        <!--</ru.mbg.nczd.views.SpinnerItem>-->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/date_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
-        <!--<android.support.design.widget.TextInputLayout-->
-            <!--android:layout_width="143dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--tools:layout_editor_absoluteX="8dp"-->
-            <!--tools:layout_editor_absoluteY="82dp">-->
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/date_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="normal"
+                    android:textColor="#de1f2f42"
+                    android:hint="@string/reception.reception_time"/>
 
-            <!--<android.support.design.widget.TextInputEditText-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:hint="hint"/>-->
-        <!--</android.support.design.widget.TextInputLayout>-->
+            </android.support.design.widget.TextInputLayout>
 
-        <!--<android.support.design.widget.TextInputLayout-->
-            <!--android:layout_width="217dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--tools:layout_editor_absoluteX="159dp"-->
-            <!--tools:layout_editor_absoluteY="106dp">-->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/time_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
 
-            <!--<android.support.design.widget.TextInputEditText-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:hint="hint"/>-->
-        <!--</android.support.design.widget.TextInputLayout>-->
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/time_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="normal"
+                    android:textColor="#de1f2f42"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <ru.mbg.nczd.views.SpinnerItem
+            android:id="@+id/purpose_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        </ru.mbg.nczd.views.SpinnerItem>
 
     </android.support.constraint.ConstraintLayout>
 

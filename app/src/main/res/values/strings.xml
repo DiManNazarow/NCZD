@@ -114,6 +114,13 @@
     <string name="reception.ct_scan">Компьютерная томография</string>
     <string name="reception.mri">МРТ</string>
     <string name="reception.x_ray">Рентген</string>
+    <string name="reception.cosmetologist_reception">Запись к косметологу</string>
+    <string name="reception.neurologist_reception">Запись к неврологу</string>
+    <string name="reception.psychologist_reception">Запись к психологу</string>
+    <string name="reception.mammologist_reception">Запись к маммологу</string>
+    <string name="reception.ct_scan_reception">Запись на компьютерную томографию</string>
+    <string name="reception.mri_reception">Запись на МРТ</string>
+    <string name="reception.x_ray_reception">Запись на рентген</string>
     <string name="reception.apply_now">Подать заявку</string>
     <string name="reception.receprion_type">Тип приема</string>
     <string name="reception.type_1">Повторный</string>
@@ -167,6 +174,23 @@
     <string name="personal_info.omc">ОМС</string>
     <string name="personal_info.number">Телефон</string>
     <string name="personal_info.save">СОХРАНИТЬ</string>
+
+    <array name="months">
+        <item>января</item>
+        <item>февраля</item>
+        <item>марта</item>
+        <item>апреля</item>
+        <item>мая</item>
+        <item>июня</item>
+        <item>июля</item>
+        <item>августа</item>
+        <item>сентября</item>
+        <item>октября</item>
+        <item>ноября</item>
+        <item>августа</item>
+    </array>
+
+    <string name="you">Вы</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

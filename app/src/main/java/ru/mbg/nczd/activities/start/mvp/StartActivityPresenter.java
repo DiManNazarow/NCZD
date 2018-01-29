@@ -94,6 +94,8 @@ public class StartActivityPresenter extends BaseMvpPresenter<StartView> {
         manager.registerReceiver(mLoginActionReceiver, new IntentFilter(Params.LOGIN_ACTION));
         manager.registerReceiver(mRegisterActionReceiver, new IntentFilter(Params.REGISTER_ACTION));
         manager.registerReceiver(mPersonalInfoSuccessUpdateReceiver, new IntentFilter(Params.PERSONAL_INFO_SUCCESS_UPDATE));
+        manager.registerReceiver(mReceptionActionReceiver, new IntentFilter(Params.RECEPTION_ACTION));
+        manager.registerReceiver(mReceptionAddReceiver, new IntentFilter(Params.RECEPTION_ADD_ACTION));
     }
 
     public void unregisterReceivers(Context context){
@@ -103,6 +105,8 @@ public class StartActivityPresenter extends BaseMvpPresenter<StartView> {
         manager.unregisterReceiver(mLoginActionReceiver);
         manager.unregisterReceiver(mRegisterActionReceiver);
         manager.unregisterReceiver(mPersonalInfoSuccessUpdateReceiver);
+        manager.unregisterReceiver(mReceptionActionReceiver);
+        manager.unregisterReceiver(mReceptionAddReceiver);
     }
 
     private BroadcastReceiver mLoginSuccessReceiver = new BroadcastReceiver() {
@@ -145,6 +149,20 @@ public class StartActivityPresenter extends BaseMvpPresenter<StartView> {
         public void onReceive(Context context, Intent intent) {
             Intent openRegisterActivity = new Intent(getActivity(), RegisterActivity.class);
             getActivity().startActivityForResult(openRegisterActivity, Params.REGISTER_REQUEST_CODE);
+        }
+    };
+
+    private BroadcastReceiver mReceptionActionReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            getViewState().onReceptionAction();
+        }
+    };
+
+    private BroadcastReceiver mReceptionAddReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            getViewState().onReceptionAdd();
         }
     };
 

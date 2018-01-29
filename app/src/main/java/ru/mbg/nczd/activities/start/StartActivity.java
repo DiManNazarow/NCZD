@@ -22,6 +22,8 @@ import ru.mbg.nczd.activities.BaseActivity;
 import ru.mbg.nczd.activities.auth.LoginActivity;
 import ru.mbg.nczd.activities.start.mvp.StartActivityPresenter;
 import ru.mbg.nczd.activities.start.mvp.StartView;
+import ru.mbg.nczd.db.UserManager;
+import ru.mbg.nczd.db.models.User;
 import ru.mbg.nczd.utils.Params;
 import ru.mbg.nczd.views.MainBottomNavBar;
 import ru.mbg.nczd.views.ProfileDrawerView;
@@ -94,6 +96,19 @@ public class StartActivity extends BaseActivity implements StartView, MainBottom
     @Override
     public void onRegister(long userId) {
         mProfileDrawerView.initUserContent(userId);
+    }
+
+    @Override
+    public void onReceptionAction() {
+        mDrawerLayout.closeDrawer(Gravity.START);
+        mBottomNavBar.setReceptionSelected();
+        showFragment(mStartActivityPresenter.getReceptionFragment(), mStartActivityPresenter.getReceptionFragment().TAG);
+        setToolbarTitle(R.string.reception_reception);
+    }
+
+    @Override
+    public void onReceptionAdd() {
+        mProfileDrawerView.initUserContent(UserManager.instance().getUserId());
     }
 
     @Override

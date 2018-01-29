@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ru.mbg.nczd.reception.ReceptionActivity">
+    tools:context=".activities.reception.ReceptionActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -20,7 +20,10 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar">
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/apply_button"
+        android:layout_marginBottom="8dp"
+        android:paddingBottom="8dp">
 
     </android.support.v7.widget.RecyclerView>
 

@@ -14,8 +14,8 @@ import ru.mbg.nczd.App;
 import ru.mbg.nczd.R;
 import ru.mbg.nczd.activities.auth.LoginActivity;
 import ru.mbg.nczd.activities.personalinfo.PersonalInfoActivity;
-import ru.mbg.nczd.activities.personalinfo.mvp.PersonalInfoView;
-import ru.mbg.nczd.db.models.User;
+import ru.mbg.nczd.db.UserManager;
+import ru.mbg.nczd.db.models.UserEntity;
 import ru.mbg.nczd.mvp.BaseMvpPresenter;
 import ru.mbg.nczd.utils.Params;
 import ru.mbg.nczd.utils.AppTextUtils;
@@ -98,6 +98,7 @@ public class RegisterActivityPresenter extends BaseMvpPresenter<RegisterView> {
             @Override
             public void onClick(View v) {
                 if (mUserId != Long.MIN_VALUE){
+                    UserManager.instance().setUserId(mUserId);
                     Intent intent = new Intent(getActivity(), PersonalInfoActivity.class);
                     intent.putExtra(Params.USER_ID_ARG, mUserId);
                     getActivity().startActivity(intent);
@@ -109,6 +110,7 @@ public class RegisterActivityPresenter extends BaseMvpPresenter<RegisterView> {
             public void onClick(View v) {
                 Intent intent = new Intent(Params.REGISTER_SUCCESS);
                 intent.putExtra(Params.USER_ID_ARG, mUserId);
+                UserManager.instance().setUserId(mUserId);
                 LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
                 getActivity().finish();
             }
@@ -120,8 +122,8 @@ public class RegisterActivityPresenter extends BaseMvpPresenter<RegisterView> {
         getActivity().startActivity(intent);
     }
 
-    private User createUser(){
-        User user = new User();
+    private UserEntity createUser(){
+        UserEntity user = new UserEntity();
         user.setLogin(mLogin);
         user.setEmail(mEmail);
         user.setPassword(mPassword);

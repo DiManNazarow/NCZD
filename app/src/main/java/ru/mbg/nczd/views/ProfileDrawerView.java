@@ -11,7 +11,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.mbg.nczd.App;
 import ru.mbg.nczd.R;
-import ru.mbg.nczd.db.models.User;
+import ru.mbg.nczd.db.models.UserEntity;
 import ru.mbg.nczd.feature.profile.ProfileContentView;
 import ru.mbg.nczd.feature.profile.ProfileHeaderView;
 import ru.mbg.nczd.utils.AppTextUtils;
@@ -51,7 +51,7 @@ public class ProfileDrawerView extends LinearLayout {
 
     public void initUserContent(long userId){
 
-        User user = App.getAppDatabase().getUserDao().get(userId);
+        UserEntity user = App.getAppDatabase().getUserDao().get(userId);
         if (user != null){
             if (isUserInitialsEmpty(user)){
                 mProfileHeaderView.setNameText(getContext().getString(R.string.profile_good_day));
@@ -68,7 +68,7 @@ public class ProfileDrawerView extends LinearLayout {
         mProfileContentView.initUserContent();
     }
 
-    private boolean isUserInitialsEmpty(User user){
+    private boolean isUserInitialsEmpty(UserEntity user){
         return AppTextUtils.isEmpty(user.getFirstName()) && AppTextUtils.isEmpty(user.getPatronymic());
     }
 

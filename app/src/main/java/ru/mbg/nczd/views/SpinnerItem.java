@@ -33,6 +33,8 @@ public class SpinnerItem extends ConstraintLayout {
 
     private List<String> mItems;
 
+    private SpinnerAdapter mSpinnerAdapter;
+
     public SpinnerItem(Context context) {
         super(context);
         init();
@@ -52,11 +54,14 @@ public class SpinnerItem extends ConstraintLayout {
         LayoutInflater.from(getContext()).inflate(R.layout.layout_spinner_item, this, true);
         ButterKnife.bind(this, this);
         mItems = new ArrayList<>();
-        mSpinner.setAdapter(new SpinnerAdapter(getContext(), R.layout.spinner_item, mItems));
+        mSpinnerAdapter = new SpinnerAdapter(getContext(), R.layout.spinner_item, mItems);
+        mSpinner.setAdapter(mSpinnerAdapter);
     }
 
     public void setItems(List<String> items){
         mItems = items;
+        mSpinnerAdapter.addAll(mItems);
+        mSpinnerAdapter.notifyDataSetChanged();
     }
 
     public void setSpinnerItemSelectedListener(AdapterView.OnItemSelectedListener listener){

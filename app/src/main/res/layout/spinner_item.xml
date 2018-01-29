@@ -8,6 +8,8 @@
     android:fontFamily="sans-serif"
     android:textStyle="normal"
     android:textColor="#de1f2f42"
+    android:paddingBottom="4dp"
+    android:paddingTop="4dp"
     tools:text="Повторный">
 
 </TextView>

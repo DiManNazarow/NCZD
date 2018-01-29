@@ -1,112 +1,30 @@
 package ru.mbg.nczd.db.models;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.Relation;
+
+import java.util.List;
 
 /**
- * Created by Дмитрий on 19.01.2018.
+ * Created by Дмитрий on 30.01.2018.
  */
-@Entity(tableName = "User")
-public class User {
 
-    @PrimaryKey(autoGenerate = true)
-    private long id;
+public class User extends UserEntity {
 
-    private String login;
+    @Relation(parentColumn = "user_id", entityColumn = "reception_id", entity = ReceptionEntity.class)
+    private List<Reception> mReceptions;
 
-    private String password;
-
-    private String email;
-
-    private String firstName;
-
-    private String secondName;
-
-    private String patronymic;
-
-    private String dateBirth;
-
-    private String omc;
-
-    private String number;
-
-    public long getId() {
-        return id;
+    public List<Reception> getReceptions() {
+        return mReceptions;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setReceptions(List<Reception> receptions) {
+        mReceptions = receptions;
     }
 
-    public String getLogin() {
-        return login;
+    @Ignore
+    public boolean isUserHaveReception(){
+        return mReceptions != null && !mReceptions.isEmpty();
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getOmc() {
-        return omc;
-    }
-
-    public void setOmc(String omc) {
-        this.omc = omc;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getSecondName() {
-        return secondName;
-    }
-
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
-    public String getPatronymic() {
-        return patronymic;
-    }
-
-    public void setPatronymic(String patronymic) {
-        this.patronymic = patronymic;
-    }
-
-    public String getDateBirth() {
-        return dateBirth;
-    }
-
-    public void setDateBirth(String dateBirth) {
-        this.dateBirth = dateBirth;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
 }

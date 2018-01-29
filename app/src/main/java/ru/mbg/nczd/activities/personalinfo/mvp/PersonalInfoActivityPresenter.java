@@ -10,7 +10,7 @@ import com.arellomobile.mvp.InjectViewState;
 
 import ru.mbg.nczd.App;
 import ru.mbg.nczd.R;
-import ru.mbg.nczd.db.models.User;
+import ru.mbg.nczd.db.models.UserEntity;
 import ru.mbg.nczd.mvp.BaseMvpPresenter;
 import ru.mbg.nczd.utils.Params;
 import ru.mbg.nczd.utils.AppTextUtils;
@@ -88,7 +88,7 @@ public class PersonalInfoActivityPresenter extends BaseMvpPresenter<PersonalInfo
             return;
         }
         if (userId != Long.MIN_VALUE) {
-            User user = App.getAppDatabase().getUserDao().get(userId);
+            UserEntity user = App.getAppDatabase().getUserDao().get(userId);
             user.setFirstName(mFirstName);
             user.setSecondName(mSecondName);
             user.setPatronymic(mPatronymic);
