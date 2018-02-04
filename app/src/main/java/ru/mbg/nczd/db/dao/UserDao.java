@@ -19,7 +19,7 @@ public interface UserDao {
     Long insert(UserEntity user);
 
     @Update
-    User update(UserEntity userEntity);
+    int update(UserEntity userEntity);
 
     @Query("SELECT * FROM UserEntity WHERE UserEntity.login = :login AND UserEntity.password = :password")
     User get(String login, String password);

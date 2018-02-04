@@ -14,10 +14,11 @@ import java.util.List;
 import ru.mbg.nczd.feature.news.NewsListRecyclerAdapter;
 import ru.mbg.nczd.feature.news.models.News;
 import ru.mbg.nczd.feature.recyclerviews.RecyclerFragment;
+import ru.mbg.nczd.feature.recyclerviews.RecyclerRefreshFragment;
 import ru.mbg.nczd.fragments.mvp.NewsFragmentPresenter;
 import ru.mbg.nczd.fragments.mvp.NewsView;
 
-public class NewsFragment extends RecyclerFragment implements NewsView {
+public class NewsFragment extends RecyclerRefreshFragment implements NewsView {
 
     public final String TAG = "NewFragment";
 
@@ -44,7 +45,8 @@ public class NewsFragment extends RecyclerFragment implements NewsView {
 
     public void onViewCreated(View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
-        mNewsFragmentPresenter.getNewsList();
+        mNewsFragmentPresenter.init(mRecyclerView, mRecyclerAdapter);
+        mNewsFragmentPresenter.loadConfig();
     }
 
     @Override
@@ -57,5 +59,20 @@ public class NewsFragment extends RecyclerFragment implements NewsView {
     public void onNewsListGot(List<News> news) {
         mRecyclerAdapter.setData(news);
         mRecyclerAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onLoadingStarted() {
+        mSwipeRefreshLayout.setRefreshing(true);
+    }
+
+    @Override
+    public void onLoadingEnded() {
+        mSwipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void onRefresh() {
+        mNewsFragmentPresenter.refresh();
     }
 }

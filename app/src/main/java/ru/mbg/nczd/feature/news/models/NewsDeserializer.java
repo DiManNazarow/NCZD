@@ -19,14 +19,25 @@ public class NewsDeserializer implements JsonDeserializer<List<News>> {
     @Override
     public List<News> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         JsonObject object = (JsonObject)json;
-        JsonArray news = object.getAsJsonArray("news");
+        JsonArray news = object.getAsJsonArray("data");
         List<News> newsList = new ArrayList<>();
         for (JsonElement element : news){
             JsonObject jo = (JsonObject)element;
             News n = new News();
-            n.setData(jo.get("data").getAsString());
-            n.setTitle(jo.get("title").getAsString());
-            n.setContent(jo.get("content").getAsString());
+            //n.setData(jo.get("data").getAsString());
+            n.setTitle(jo.get("Title").getAsString());
+            n.setText(jo.get("Text").getAsString());
+            if (!jo.get("Imgs").isJsonNull()){
+                JsonArray imgs = jo.getAsJsonArray("Imgs");
+                List<String> images = new ArrayList<>();
+                for (JsonElement e : imgs){
+                    images.add(e.toString().replaceAll("\"", ""));
+                }
+                n.setImages(images);
+            }
+            if (!jo.get("PageLink").isJsonNull()) {
+                n.setPageLink(jo.get("PageLink").getAsString());
+            }
             newsList.add(n);
         }
         return newsList;

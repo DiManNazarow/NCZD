@@ -1,5 +1,7 @@
 package ru.mbg.nczd.feature.news.models;
 
+import java.util.List;
+
 import ru.mbg.nczd.feature.BaseModel;
 
 /**
@@ -10,9 +12,11 @@ public class News extends BaseModel {
 
     public String title;
 
-    public String content;
+    public String text;
 
-    public String data;
+    public String pageLink;
+
+    public List<String> images;
 
     public String getTitle() {
         return title;
@@ -22,19 +26,27 @@ public class News extends BaseModel {
         this.title = title;
     }
 
-    public String getContent() {
-        return content;
+    public String getText() {
+        return text;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setText(String text) {
+        this.text = text;
     }
 
-    public String getData() {
-        return data;
+    public String getPageLink() {
+        return pageLink;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setPageLink(String pageLink) {
+        this.pageLink = pageLink;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 }

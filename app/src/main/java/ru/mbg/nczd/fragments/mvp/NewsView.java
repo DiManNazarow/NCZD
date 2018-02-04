@@ -12,6 +12,10 @@ import ru.mbg.nczd.feature.news.models.News;
 
 public interface NewsView extends MvpView {
 
-    public void onNewsListGot(List<News> news);
+    void onNewsListGot(List<News> news);
+
+    void onLoadingStarted();
+
+    void onLoadingEnded();
 
 }

@@ -43,4 +43,12 @@ public abstract class BaseRecyclerAdapter<T extends BaseViewHolder, M extends Ba
     public void setData(List<M> data) {
         mData = data;
     }
+
+    public void addData(List<M> data){
+        if (mData != null){
+            mData.addAll(data);
+        } else {
+            mData = data;
+        }
+    }
 }
