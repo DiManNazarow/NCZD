@@ -11,26 +11,25 @@ import android.arch.persistence.room.PrimaryKey;
 public class UserEntity {
 
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "user_id")
     private long id;
 
     private String login;
 
     private String password;
 
-    private String email;
+    protected String email;
 
-    private String firstName;
+    protected String firstName;
 
-    private String secondName;
+    protected String secondName;
 
-    private String patronymic;
+    protected String patronymic;
 
-    private String dateBirth;
+    protected String dateBirth;
 
-    private String omc;
+    protected String omc;
 
-    private String number;
+    protected String number;
 
     public long getId() {
         return id;

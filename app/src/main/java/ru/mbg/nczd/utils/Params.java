@@ -24,13 +24,25 @@ public class Params {
 
     public static final String RECEPTION_ADD_ACTION = "reception_add_action";
 
+    public static final String ADD_CHILD_ACTION = "add_child_action";
+
     public static final int LOGIN_REQUEST_CODE = 1000;
 
     public static final int REGISTER_REQUEST_CODE = 1001;
 
+    public static final int ADD_CHILD_REQUEST_CODE = 1002;
+
+    public static final int EDIT_CHILD_REQUEST_CODE = 1003;
+
     public static final String USER_ID_ARG = "user_id_args";
 
+    public static final String RECEPTION_ID_ARG = "reception_id_arg";
+
+    public static final String UPDATE_PROFILE_ACTION = "update_profile_action";
+
     public static final String RECEPTION_TYPE_ARG = "reception_type_arg";
+
+    public static final String CHILD_ID_ARG = "child_id_arg";
 
     public enum RECEPTION_TYPE {
         COSMETOLOGIST_RECEPTION {

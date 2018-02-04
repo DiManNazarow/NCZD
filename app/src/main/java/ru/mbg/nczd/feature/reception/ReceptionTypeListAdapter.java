@@ -1,5 +1,7 @@
 package ru.mbg.nczd.feature.reception;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -9,8 +11,12 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import ru.mbg.nczd.R;
+import ru.mbg.nczd.activities.auth.LoginActivity;
+import ru.mbg.nczd.activities.personalinfo.PersonalInfoActivity;
+import ru.mbg.nczd.db.UserManager;
 import ru.mbg.nczd.feature.profile.ProfileContentView;
 import ru.mbg.nczd.feature.recyclerviews.holders.SimpleViewHolder;
+import ru.mbg.nczd.utils.GuiUtils;
 import ru.mbg.nczd.utils.Params;
 
 /**
@@ -33,8 +39,11 @@ public class ReceptionTypeListAdapter extends RecyclerView.Adapter<RecyclerView.
 
     private OnReceptionTypeClickListener mReceptionTypeClickListener;
 
-    public ReceptionTypeListAdapter(@NonNull OnReceptionTypeClickListener listener){
+    private Activity mActivity;
+
+    public ReceptionTypeListAdapter(@NonNull OnReceptionTypeClickListener listener, Activity activity){
         mReceptionTypeClickListener = listener;
+        mActivity = activity;
     }
 
     @Override
@@ -124,45 +133,84 @@ public class ReceptionTypeListAdapter extends RecyclerView.Adapter<RecyclerView.
             mCosmetologistView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onReceptionTypeClick(Params.RECEPTION_TYPE.COSMETOLOGIST_RECEPTION);
+                    if (allowReception()) {
+                        listener.onReceptionTypeClick(Params.RECEPTION_TYPE.COSMETOLOGIST_RECEPTION);
+                    }
                 }
             });
             mNeurologistView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onReceptionTypeClick(Params.RECEPTION_TYPE.NEUROLOGIST_RECEPTION);
+                    if (allowReception()) {
+                        listener.onReceptionTypeClick(Params.RECEPTION_TYPE.NEUROLOGIST_RECEPTION);
+                    }
                 }
             });
             mPsychologistView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   listener.onReceptionTypeClick(Params.RECEPTION_TYPE.PSYCHOLOGIST_RECEPTION);
+                    if (allowReception()) {
+                        listener.onReceptionTypeClick(Params.RECEPTION_TYPE.PSYCHOLOGIST_RECEPTION);
+                    }
                 }
             });
             mMammologistView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onReceptionTypeClick(Params.RECEPTION_TYPE.MAMMOLOGIST_RECEPTION);
+                    if (allowReception()) {
+                        listener.onReceptionTypeClick(Params.RECEPTION_TYPE.MAMMOLOGIST_RECEPTION);
+                    }
                 }
             });
             mCtScanView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onReceptionTypeClick(Params.RECEPTION_TYPE.CT_SCAN_RECEPTION);
+                    if (allowReception()) {
+                        listener.onReceptionTypeClick(Params.RECEPTION_TYPE.CT_SCAN_RECEPTION);
+                    }
                 }
             });
             mMriTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onReceptionTypeClick(Params.RECEPTION_TYPE.MRI_RECEPTION);
+                    if (allowReception()) {
+                        listener.onReceptionTypeClick(Params.RECEPTION_TYPE.MRI_RECEPTION);
+                    }
                 }
             });
             mXrayTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onReceptionTypeClick(Params.RECEPTION_TYPE.X_RAY_RECEPTION);
+                    if (allowReception()) {
+                        listener.onReceptionTypeClick(Params.RECEPTION_TYPE.X_RAY_RECEPTION);
+                    }
                 }
             });
+        }
+
+        private boolean allowReception(){
+            if (!UserManager.instance().isUserAuth()){
+                GuiUtils.showAlertMessage(R.string.error_auth_failed_title, R.string.reception_not_auth, R.string.not_auth, R.string.auth, null, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent openLoginActivity = new Intent(mActivity, LoginActivity.class);
+                        mActivity.startActivityForResult(openLoginActivity, Params.LOGIN_REQUEST_CODE);
+                    }
+                }, mActivity);
+                return false;
+            }
+            if (!UserManager.instance().getUser().isUserHaveAllInfo()){
+                GuiUtils.showAlertMessage(R.string.reception_empty_profile_title, R.string.reception_empty_profile, R.string.not_fill, R.string.fill, null, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(mActivity, PersonalInfoActivity.class);
+                        intent.putExtra(Params.USER_ID_ARG, UserManager.instance().getUserId());
+                        mActivity.startActivity(intent);
+                    }
+                }, mActivity);
+                return false;
+            }
+            return true;
         }
 
     }

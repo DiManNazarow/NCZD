@@ -82,11 +82,18 @@ public class PersonalInfoActivityPresenter extends BaseMvpPresenter<PersonalInfo
         if (AppTextUtils.isEmpty(mOmc)){
             getViewState().onOMCError(getString(R.string.error_empty_omc));
             return;
+        } else if (mOmc.trim().length() != 16){
+            getViewState().onOMCError(getString(R.string.error_omc_wrong));
+            return;
         }
-        if (AppTextUtils.isEmpty(mNumber)){
+        if (AppTextUtils.isEmpty(mNumber)) {
             getViewState().onNumberError(getString(R.string.error_empty_number));
             return;
         }
+//        } else if (!AppTextUtils.isPhone(mNumber)){
+//            getViewState().onNumberError(getString(R.string.error_phone_wrong));
+//            return;
+//        }
         if (userId != Long.MIN_VALUE) {
             UserEntity user = App.getAppDatabase().getUserDao().get(userId);
             user.setFirstName(mFirstName);

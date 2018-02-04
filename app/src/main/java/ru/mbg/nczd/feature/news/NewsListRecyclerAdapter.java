@@ -69,7 +69,7 @@ public class NewsListRecyclerAdapter extends BaseRecyclerAdapter<NewsListRecycle
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 mContentTextView.setText(Html.fromHtml(news.getText(), Html.FROM_HTML_MODE_LEGACY));
             } else {
-                mContentTextView.setText(Html.escapeHtml(news.getText()));
+                mContentTextView.setText(Html.fromHtml(news.getText()));
             }
             if (AppTextUtils.isEmpty(news.getPageLink())){
                 mReadMoreButton.setVisibility(View.GONE);

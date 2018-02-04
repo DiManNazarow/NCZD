@@ -27,7 +27,7 @@ public class ReceptionFragment extends RecyclerFragment {
             public void onReceptionTypeClick(Params.RECEPTION_TYPE type) {
                 openReceptionActivity(type);
             }
-        });
+        }, getActivity());
     }
 
     public void openReceptionActivity(Params.RECEPTION_TYPE receptionType){

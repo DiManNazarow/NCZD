@@ -12,16 +12,19 @@ import android.widget.LinearLayout;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.mbg.nczd.App;
 import ru.mbg.nczd.R;
 import ru.mbg.nczd.db.UserManager;
+import ru.mbg.nczd.db.models.Child;
 import ru.mbg.nczd.db.models.Reception;
 import ru.mbg.nczd.db.models.User;
 import ru.mbg.nczd.utils.DateUtils;
 import ru.mbg.nczd.utils.Params;
+import ru.mbg.nczd.views.SimpleChildInfo;
 import ru.mbg.nczd.views.SimpleReceptionInfo;
 
 /**
@@ -146,9 +149,8 @@ public class ProfileContentAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         void addReceptionInfo(LinearLayout container){
             container.removeAllViews();
-            List<Reception> r = App.getAppDatabase().getReceptionDao().getAll();
             for (Reception reception : mUser.getReceptions()){
-                SimpleReceptionInfo info = new SimpleReceptionInfo(container.getContext());
+                SimpleReceptionInfo info = new SimpleReceptionInfo(container.getContext(), reception.getId());
                 info.setDateText(DateUtils.getSimpleReceptionInfoDate(container.getContext(), reception.getDate()));
                 info.setTimeText(reception.getTime());
                 info.setNameText(Params.RECEPTION_TYPE.getById(reception.getTypeId()).getName(container.getContext()));
@@ -159,9 +161,49 @@ public class ProfileContentAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     class ChildsHolder extends RecyclerView.ViewHolder {
 
-        public ChildsHolder(ViewGroup parentView) {
+        @BindView(R.id.add_button)
+        Button mAddButton;
+        @BindView(R.id.add_reception_button)
+        ImageButton mAddChildButton;
+        @BindView(R.id.container)
+        LinearLayout mContainer;
+
+        User mUser;
+
+        public ChildsHolder(final ViewGroup parentView) {
             super(LayoutInflater.from(parentView.getContext()).inflate(R.layout.layout_childs, parentView, false));
+            ButterKnife.bind(this, itemView);
+            mAddButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    LocalBroadcastManager.getInstance(parentView.getContext()).sendBroadcast(new Intent(Params.ADD_CHILD_ACTION));
+                }
+            });
+            mAddChildButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    LocalBroadcastManager.getInstance(parentView.getContext()).sendBroadcast(new Intent(Params.ADD_CHILD_ACTION));
+                }
+            });
+            mUser = UserManager.instance().getUser();
+            if (mUser.isUserHaveChildren()){
+                mAddChildButton.setVisibility(View.VISIBLE);
+                mAddButton.setVisibility(View.GONE);
+                addChildInfo(mContainer);
+            }
         }
+
+        void addChildInfo(LinearLayout container){
+            container.removeAllViews();
+            List<Child> a = App.getAppDatabase().getChildrenDao().getAll();
+            for (Child child : mUser.getChildren()){
+                SimpleChildInfo info = new SimpleChildInfo(container.getContext(), child.getChildId());
+                info.setInitialsText(String.format(Locale.getDefault(), "%s %s", child.getFirstName(), child.getPatronymic()));
+                info.setOmcText(child.getOmc());
+                container.addView(info);
+            }
+        }
+
     }
 
 

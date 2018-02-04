@@ -35,6 +35,7 @@ import ru.mbg.nczd.db.models.UserEntity;
 import ru.mbg.nczd.mvp.BaseMvpPresenter;
 import ru.mbg.nczd.utils.AppTextUtils;
 import ru.mbg.nczd.utils.DateUtils;
+import ru.mbg.nczd.utils.GuiUtils;
 import ru.mbg.nczd.utils.Params;
 import ru.mbg.nczd.views.SpacingItemDecoration;
 import ru.mbg.nczd.views.SpinnerItem;
@@ -51,6 +52,10 @@ public class ReceptionActivityPresenter extends BaseMvpPresenter<ReceptionView> 
 
     private Params.RECEPTION_TYPE mReceptionType;
 
+    private RecyclerView mRecyclerView;
+
+    private LinearLayoutManager mLinearLayoutManager;
+
     public ReceptionActivityPresenter(@NonNull Activity activity) {
         super(activity);
         mUser = UserManager.instance().getUser();
@@ -66,9 +71,11 @@ public class ReceptionActivityPresenter extends BaseMvpPresenter<ReceptionView> 
     }
 
     public void prepareRecyclerView(RecyclerView recyclerView){
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.addItemDecoration(new SpacingItemDecoration());
-        recyclerView.setAdapter(mReceptionAdapter);
+        mRecyclerView = recyclerView;
+        mLinearLayoutManager = new LinearLayoutManager(getActivity());
+        mRecyclerView.setLayoutManager(mLinearLayoutManager);
+        mRecyclerView.addItemDecoration(new SpacingItemDecoration());
+        mRecyclerView.setAdapter(mReceptionAdapter);
     }
 
     public void setUser(User user){
@@ -78,6 +85,15 @@ public class ReceptionActivityPresenter extends BaseMvpPresenter<ReceptionView> 
 
     public void addReception(){
         Reception reception = new Reception();
+        if (((ReceptionSettingViewHolder)mReceptionAdapter.mHolders.get(ReceptionAdapter.RECEPTION_SETTINGS_VIEW_TYPE)).isHasError()){
+            scrollToError(1);
+            return;
+        }
+        if (!((AgreePersonalDateProcessHolder)mReceptionAdapter.mHolders.get(ReceptionAdapter.PERSONAL_INFO_PROCESS_VIEW_TYPE)).isChecked()){
+            scrollToError(2);
+            GuiUtils.showOkMessage(R.string.reception_personal_data_process_error_title, R.string.reception_personal_data_process_error, getActivity());
+            return;
+        }
         ReceptionSettingViewHolder.Settings settings = ((ReceptionSettingViewHolder)mReceptionAdapter.mHolders.get(ReceptionAdapter.RECEPTION_SETTINGS_VIEW_TYPE)).getSettings();
         reception.setTypeId(mReceptionType.getReceptionTypeId());
         reception.setType(mReceptionType.getReceptionName(getActivity()));
@@ -86,19 +102,10 @@ public class ReceptionActivityPresenter extends BaseMvpPresenter<ReceptionView> 
         reception.setRepeated(settings.repeated);
         reception.setPurpose(settings.purpose);
         reception.setUserId(mUser.getId());
-        if (mUser.getReceptions() == null){
-            List<Reception> receptions = new ArrayList<>();
-            receptions.add(reception);
-            mUser.setReceptions(receptions);
-            long id = App.getAppDatabase().getReceptionDao().insert(reception);
-            long userId = App.getAppDatabase().getUserDao().insert(mUser);
-            UserManager.instance().setUserId(userId);
-        } else {
-            mUser.getReceptions().add(reception);
-            long id = App.getAppDatabase().getReceptionDao().insert(reception);
-            long userId = App.getAppDatabase().getUserDao().insert(mUser);
-            UserManager.instance().setUserId(userId);
-        }
+        App.getAppDatabase().getReceptionDao().insert(reception);
+        mUser.getReceptions().add(reception);
+        long userId = App.getAppDatabase().getUserDao().insert(mUser);
+        UserManager.instance().setUserId(userId);
         LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(new Intent(Params.RECEPTION_ADD_ACTION));
         getActivity().finish();
     }
@@ -197,24 +204,29 @@ public class ReceptionActivityPresenter extends BaseMvpPresenter<ReceptionView> 
                     mFirstNameInput.setError(null);
                 }
             });
+            mFirstNameEditText.setOnTouchListener(AppTextUtils.sEmptyTouchListener);
             mSecondNameEditText.addTextChangedListener(new AppTextUtils.TextChangeListener() {
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
                     mSecondNameInput.setError(null);
                 }
             });
+            mSecondNameEditText.setOnTouchListener(AppTextUtils.sEmptyTouchListener);
             mPatronymicEditText.addTextChangedListener(new AppTextUtils.TextChangeListener() {
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
                     mPatronymicInput.setError(null);
                 }
             });
+            mPatronymicEditText.setOnTouchListener(AppTextUtils.sEmptyTouchListener);
+            mNumberEditText.setOnTouchListener(AppTextUtils.sEmptyTouchListener);
             mNumberEditText.addTextChangedListener(new AppTextUtils.TextChangeListener() {
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
                     mNumberInput.setError(null);
                 }
             });
+            mEmailEditText.setOnTouchListener(AppTextUtils.sEmptyTouchListener);
             mEmailEditText.addTextChangedListener(new AppTextUtils.TextChangeListener() {
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -297,59 +309,50 @@ public class ReceptionActivityPresenter extends BaseMvpPresenter<ReceptionView> 
             mPurposeSpinner.setTitleText(R.string.reception_purpose_of_reception);
             mPurposeSpinner.setItems(PURPOSE_TYPE.getTypeNameList(itemView.getContext()));
             mDateEditText.setText(DateUtils.getStringDateEditText());
-            mDateEditText.setOnTouchListener(new View.OnTouchListener() {
+            mDateEditText.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public boolean onTouch(View v, MotionEvent event) {
+                public void onClick(View v) {
                     DateUtils.showDatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                             mDateEditText.setText(DateUtils.getStringDateEditText(year, month, dayOfMonth));
                             mDate = DateUtils.getStringDate(year, month, dayOfMonth);
+                            mDateInput.setError(null);
                         }
                     });
-                    return true;
                 }
             });
-//            mDateEditText.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    DateUtils.showDatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
-//                        @Override
-//                        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-//                            mDateEditText.setText(DateUtils.getStringDateEditText(year, month, dayOfMonth));
-//                        }
-//                    });
-//                }
-//            });
             mTimeEditText.setText(DateUtils.getStringTimeEditText());
-            mTimeEditText.setOnTouchListener(new View.OnTouchListener() {
+            mTimeEditText.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public boolean onTouch(View v, MotionEvent event) {
+                public void onClick(View v) {
                     DateUtils.showTimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                            mTimeEditText.setText(DateUtils.getStringTimeEditText(hourOfDay, minute));
-                            mTime = DateUtils.getStringTimeEditText(hourOfDay, minute);
+                            String time = DateUtils.getStringTimeEditText(hourOfDay, minute);
+                            mTimeEditText.setText(time);
+                            mTime = time;
+                            mTimeInput.setError(null);
                         }
                     });
-                    return true;
                 }
             });
-//            mTimeEditText.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    DateUtils.showTimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
-//                        @Override
-//                        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-//                            mTimeEditText.setText(DateUtils.getStringTimeEditText(hourOfDay, minute));
-//                        }
-//                    });
-//                }
-//            });
         }
 
         public void setup(){
 
+        }
+
+        public boolean isHasError(){
+            if (AppTextUtils.isEmpty(mDate)){
+                mDateInput.setError(itemView.getContext().getString(R.string.error_empty_date_reception));
+                return true;
+            }
+            if (AppTextUtils.isEmpty(mTime)){
+                mTimeInput.setError(itemView.getContext().getString(R.string.error_empty_time_reception));
+                return true;
+            }
+            return false;
         }
 
         public Settings getSettings(){
@@ -364,8 +367,11 @@ public class ReceptionActivityPresenter extends BaseMvpPresenter<ReceptionView> 
         public class Settings {
 
             public String repeated;
+
             public String date;
+
             public String time;
+
             public String purpose;
 
         }
@@ -382,14 +388,18 @@ public class ReceptionActivityPresenter extends BaseMvpPresenter<ReceptionView> 
             ButterKnife.bind(this, itemView);
         }
 
-        public void getDate(){
-
+        public boolean isChecked(){
+            return mAppCompatCheckBox.isChecked();
         }
 
     }
 
     public String getString(@StringRes int stringRes){
         return getActivity().getString(stringRes);
+    }
+
+    public void scrollToError(int position){
+        mLinearLayoutManager.scrollToPosition(position);
     }
 
     public enum RECEPTION_TYPE{

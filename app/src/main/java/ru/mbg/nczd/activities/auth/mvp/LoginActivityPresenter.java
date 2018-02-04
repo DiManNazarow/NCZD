@@ -75,6 +75,8 @@ public class LoginActivityPresenter extends BaseMvpPresenter<LoginView> {
         if (user != null){
             UserManager.instance().setUserId(user.getId());
             getViewState().onLogin(user.getId());
+        } else {
+            getViewState().onAuthError();
         }
     }
 

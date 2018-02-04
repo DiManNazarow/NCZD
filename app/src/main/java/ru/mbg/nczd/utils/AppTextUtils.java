@@ -1,7 +1,10 @@
 package ru.mbg.nczd.utils;
 
+import android.annotation.SuppressLint;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MotionEvent;
+import android.view.View;
 
 /**
  * Created by Дмитрий on 17.01.2018.
@@ -17,6 +20,10 @@ public class AppTextUtils {
         return android.text.TextUtils.isEmpty(text) || text.toLowerCase().contentEquals("null");
     }
 
+    public static boolean isPhone(String text){
+        return text.matches("\\d+(?:\\.\\d+)?");
+    }
+
     public static abstract class TextChangeListener implements TextWatcher {
 
         @Override
@@ -29,5 +36,13 @@ public class AppTextUtils {
 
         }
     }
+
+    public static View.OnTouchListener sEmptyTouchListener = new View.OnTouchListener() {
+        @SuppressLint("ClickableViewAccessibility")
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            return true;
+        }
+    };
 
 }

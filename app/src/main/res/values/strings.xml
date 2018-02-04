@@ -44,16 +44,25 @@
     <string name="bottom_nav.advice">Советы</string>
 
     <string name="error.empty_login">Логин не указан</string>
+    <string name="error.login_exist">Пользователь с указанным логином уже существует</string>
     <string name="error.empty_password">Пароль не указан</string>
     <string name="error.empty_omc">ОМС не указан</string>
+    <string name="error.omc_wrong">ОМС умеет неправильный формат</string>
     <string name="error.empty_confirm_password">Подтверждение пароля не введено</string>
     <string name="error.not_equals_confirm_pass">Пароли не совпадают</string>
     <string name="error.email_empty">E-mail не введен</string>
-    <string name="error.empty_first_name">Имя не указана</string>
+    <string name="error.email_wrong">E-mail имеет неправильный формат</string>
+    <string name="error.email_exist">Пользователь с указаной почтой уже существует</string>
+    <string name="error.empty_first_name">Имя не указано</string>
     <string name="error.empty_second_name">Фамилия не указана</string>
     <string name="error.empty_patronymic">Отчество не указано</string>
     <string name="error.empty_date_birth">Дата рождения не указана</string>
     <string name="error.empty_number">Номер не указан</string>
+    <string name="error.phone_wrong">Номер телефона имеет неправильный формат</string>
+    <string name="error.empty_date_reception">Дата приема не указана</string>
+    <string name="error.empty_time_reception">Время приема не указано</string>
+    <string name="error.auth_failed_title">Ошибка авторизации</string>
+    <string name="error.auth_failed_message">Пользователь с указанными логином и паролем не найден</string>
 
     <string name="omc">ОМС: %1$s</string>
 
@@ -128,6 +137,16 @@
     <string name="reception.purpose_of_reception">Цель приема</string>
     <string name="reception.purpose_1">Консультация врача</string>
     <string name="reception.agree_process_personal_data">Согласен на обработку персональных данных</string>
+    <string name="reception.info">Информация о приеме</string>
+    <string name="reception.initials">ФИО</string>
+    <string name="reception.date">Дата</string>
+    <string name="reception.time">Время</string>
+    <string name="reception.cancel_reception">Отменить запись</string>
+    <string name="reception.not_auth">Для того, чтобы записаться онлайн необходимо авторизоваться</string>
+    <string name="reception.empty_profile_title">Профиль не заполнен</string>
+    <string name="reception.empty_profile">Для того, чтобы записаться нужно заполнить данные в профиле</string>
+    <string name="reception.personal_data_process_error_title">Согласие с условиями</string>
+    <string name="reception.personal_data_process_error">Необходимо согласиться с обработкой персональных данных</string>
 
     <string name="how_find.address">119991, Россия, г. Москва, Ломоносовский проспект, 2, стр.1</string>
     <string name="how_find.type">1. Консультативно-диагностический центр\n2. Клиника высоких технологий\n3. Медицинский центр по внебюджетной деятельности</string>
@@ -174,6 +193,13 @@
     <string name="personal_info.omc">ОМС</string>
     <string name="personal_info.number">Телефон</string>
     <string name="personal_info.save">СОХРАНИТЬ</string>
+
+    <string name="kidz.child_info">Данные о ребенке</string>
+    
+    <string name="auth">Авторизоваться</string>
+    <string name="not_auth">Не авторизововаться</string>
+    <string name="fill">Заполнить</string>
+    <string name="not_fill">Не заполнять</string>
 
     <array name="months">
         <item>января</item>

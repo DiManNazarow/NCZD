@@ -112,6 +112,11 @@ public class StartActivity extends BaseActivity implements StartView, MainBottom
     }
 
     @Override
+    public void onUpdateProfile() {
+        mProfileDrawerView.initUserContent(UserManager.instance().getUserId());
+    }
+
+    @Override
     public void onNewsClick() {
         showFragment(mStartActivityPresenter.getNewsFragment(), mStartActivityPresenter.getNewsFragment().TAG);
         setToolbarTitle(R.string.news);
@@ -159,6 +164,8 @@ public class StartActivity extends BaseActivity implements StartView, MainBottom
         if (resultCode == Activity.RESULT_OK && requestCode == Params.LOGIN_REQUEST_CODE){
             long id = data.getLongExtra(LoginActivity.USER_ID_ARG, -1);
             mProfileDrawerView.initUserContent(id);
+        } else if (resultCode == Activity.RESULT_OK && requestCode == Params.ADD_CHILD_REQUEST_CODE){
+            mProfileDrawerView.initUserContent(UserManager.instance().getUserId());
         }
     }
 

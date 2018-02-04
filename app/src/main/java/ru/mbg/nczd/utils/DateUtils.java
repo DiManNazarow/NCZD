@@ -36,6 +36,13 @@ public class DateUtils {
         return String.format(Locale.getDefault(), "%d %s", calendar.get(Calendar.DAY_OF_MONTH), getMonthName(d, context));
     }
 
+    public static String getFullReceptionDate(Context context, String date){
+        Date d = getDateFromString(date, DEFAULT_DATE_PATTERN);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(d);
+        return String.format(Locale.getDefault(), "%s, %s", getDayName(getDateFromString(date, DEFAULT_DATE_PATTERN)), date);
+    }
+
     public static String getMonthName(Date date, Context context){
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
@@ -45,12 +52,20 @@ public class DateUtils {
 
     public static String getStringDateEditText(){
         Calendar calendar = Calendar.getInstance();
-        return String.format(Locale.getDefault(), "%s, %d.%d.%d", getDayName(getDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))), calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH));
+        if (calendar.get(Calendar.DAY_OF_MONTH) < 10){
+            return String.format(Locale.getDefault(), "%s, 0%d.%d.%d", getDayName(getDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))), calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.YEAR));
+        } else {
+            return String.format(Locale.getDefault(), "%s, %d.%d.%d", getDayName(getDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))), calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.YEAR));
+        }
     }
 
     public static String getStringTimeEditText(){
         Calendar calendar = Calendar.getInstance();
-        return String.format(Locale.getDefault(), "%d:%d", calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE));
+        if (calendar.get(Calendar.MINUTE) < 10){
+            return String.format(Locale.getDefault(), "%d:0%d", calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE));
+        } else {
+            return String.format(Locale.getDefault(), "%d:%d", calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE));
+        }
     }
 
     public static void showDatePickerDialog(Context context, DatePickerDialog.OnDateSetListener callback){
@@ -71,7 +86,11 @@ public class DateUtils {
     }
 
     public static String getStringDate(int year, int month, int day){
-        return String.format(Locale.getDefault(), "%d.%d.%d", year, month+1, day);
+        if (day < 10){
+            return String.format(Locale.getDefault(), "0%d.%d.%d", day, month + 1, year);
+        } else {
+            return String.format(Locale.getDefault(), "%d.%d.%d", day, month + 1, year);
+        }
     }
 
     public static String getDayName(Date date){
@@ -88,11 +107,19 @@ public class DateUtils {
     }
 
     public static String getStringDateEditText(int year, int month, int day){
-        return String.format(Locale.getDefault(), "%s, %d.%d.%d", getDayName(getDate(year, month, day)), day, month + 1, year);
+        if (day < 10){
+            return String.format(Locale.getDefault(), "%s, 0%d.%d.%d", getDayName(getDate(year, month, day)), day, month + 1, year);
+        } else {
+            return String.format(Locale.getDefault(), "%s, %d.%d.%d", getDayName(getDate(year, month, day)), day, month + 1, year);
+        }
     }
 
     public static String getStringTimeEditText(int hourOfDay, int minute){
-        return String.format(Locale.getDefault(), "%d:%d", hourOfDay, minute);
+        if (minute < 10){
+            return String.format(Locale.getDefault(), "%d:0%d", hourOfDay, minute);
+        } else {
+            return String.format(Locale.getDefault(), "%d:%d", hourOfDay, minute);
+        }
     }
 
 }

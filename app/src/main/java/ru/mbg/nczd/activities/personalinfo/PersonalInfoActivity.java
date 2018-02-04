@@ -1,7 +1,10 @@
 package ru.mbg.nczd.activities.personalinfo;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
+import android.widget.DatePicker;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.PresenterType;
@@ -14,6 +17,7 @@ import ru.mbg.nczd.R;
 import ru.mbg.nczd.activities.BaseActivity;
 import ru.mbg.nczd.activities.personalinfo.mvp.PersonalInfoActivityPresenter;
 import ru.mbg.nczd.activities.personalinfo.mvp.PersonalInfoView;
+import ru.mbg.nczd.utils.DateUtils;
 import ru.mbg.nczd.utils.Params;
 
 public class PersonalInfoActivity extends BaseActivity implements PersonalInfoView {
@@ -31,6 +35,11 @@ public class PersonalInfoActivity extends BaseActivity implements PersonalInfoVi
     @BindView(R.id.number_input_layout)
     protected TextInputLayout mNumberInput;
 
+    @BindView(R.id.date_birth_edit_text)
+    protected TextInputEditText mDateBirthEditText;
+    @BindView(R.id.omc_edit_text)
+    protected TextInputEditText mOmcEdit;
+
     @InjectPresenter(type = PresenterType.LOCAL)
     public PersonalInfoActivityPresenter mPresenter;
 
@@ -38,19 +47,6 @@ public class PersonalInfoActivity extends BaseActivity implements PersonalInfoVi
     public PersonalInfoActivityPresenter providePersonalActivityPresenter() {
         return new PersonalInfoActivityPresenter(this);
     }
-
-//    @BindView(R.id.first_name_edit_text)
-//    protected TextInputEditText mFirstNameEditText;
-//    @BindView(R.id.second_name_edit_text)
-//    protected TextInputEditText mSecondNameEditText;
-//    @BindView(R.id.patronymic_edit_text)
-//    protected TextInputEditText mPatronymicEditText;
-//    @BindView(R.id.date_birth_edit_text)
-//    protected TextInputEditText mDateBirthEditText;
-//    @BindView(R.id.omc_edit_text)
-//    protected TextInputEditText mOMCEditText;
-//    @BindView(R.id.number_edit_text)
-//    protected TextInputEditText mNumberEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +66,19 @@ public class PersonalInfoActivity extends BaseActivity implements PersonalInfoVi
         }
     }
 
+    @OnClick(R.id.date_birth_edit_text)
+    protected void onDateBirthClick(){
+        DateUtils.showDatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                String date = DateUtils.getStringDate(year, month, dayOfMonth);
+                mDateBirthEditText.setText(date);
+                mPresenter.setDateBirth(date);
+                onDateBirthError(null);
+            }
+        });
+    }
+
     @OnTextChanged(R.id.first_name_edit_text)
     public void onFirstNameChanged(CharSequence text){
         mPresenter.setFirstName(text.toString());
@@ -86,12 +95,6 @@ public class PersonalInfoActivity extends BaseActivity implements PersonalInfoVi
     public void onPatronymicChanged(CharSequence text){
         mPresenter.setPatronymic(text.toString());
         onPatronymicError(null);
-    }
-
-    @OnTextChanged(R.id.date_birth_edit_text)
-    public void onDateBirthChanged(CharSequence text){
-        mPresenter.setDateBirth(text.toString());
-        onDateBirthError(null);
     }
 
     @OnTextChanged(R.id.omc_edit_text)

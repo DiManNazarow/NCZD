@@ -15,6 +15,7 @@ import com.arellomobile.mvp.InjectViewState;
 
 import ru.mbg.nczd.R;
 import ru.mbg.nczd.activities.auth.LoginActivity;
+import ru.mbg.nczd.activities.kidz.AddKidzActivity;
 import ru.mbg.nczd.activities.register.RegisterActivity;
 import ru.mbg.nczd.fragments.AboutFragment;
 import ru.mbg.nczd.fragments.AdviceFragment;
@@ -96,6 +97,8 @@ public class StartActivityPresenter extends BaseMvpPresenter<StartView> {
         manager.registerReceiver(mPersonalInfoSuccessUpdateReceiver, new IntentFilter(Params.PERSONAL_INFO_SUCCESS_UPDATE));
         manager.registerReceiver(mReceptionActionReceiver, new IntentFilter(Params.RECEPTION_ACTION));
         manager.registerReceiver(mReceptionAddReceiver, new IntentFilter(Params.RECEPTION_ADD_ACTION));
+        manager.registerReceiver(mChildAddActionReceiver, new IntentFilter(Params.ADD_CHILD_ACTION));
+        manager.registerReceiver(mUpdateProfileReceiver, new IntentFilter(Params.UPDATE_PROFILE_ACTION));
     }
 
     public void unregisterReceivers(Context context){
@@ -107,6 +110,8 @@ public class StartActivityPresenter extends BaseMvpPresenter<StartView> {
         manager.unregisterReceiver(mPersonalInfoSuccessUpdateReceiver);
         manager.unregisterReceiver(mReceptionActionReceiver);
         manager.unregisterReceiver(mReceptionAddReceiver);
+        manager.unregisterReceiver(mChildAddActionReceiver);
+        manager.unregisterReceiver(mUpdateProfileReceiver);
     }
 
     private BroadcastReceiver mLoginSuccessReceiver = new BroadcastReceiver() {
@@ -159,10 +164,25 @@ public class StartActivityPresenter extends BaseMvpPresenter<StartView> {
         }
     };
 
+    private BroadcastReceiver mChildAddActionReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Intent addChildIntent = new Intent(getActivity(), AddKidzActivity.class);
+            getActivity().startActivityForResult(addChildIntent, Params.ADD_CHILD_REQUEST_CODE);
+        }
+    };
+
     private BroadcastReceiver mReceptionAddReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             getViewState().onReceptionAdd();
+        }
+    };
+
+    private BroadcastReceiver mUpdateProfileReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            getViewState().onUpdateProfile();
         }
     };
 

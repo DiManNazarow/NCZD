@@ -16,4 +16,6 @@ public interface LoginView extends MvpView {
 
     void onPasswordError(@Nullable String error);
 
+    void onAuthError();
+
 }

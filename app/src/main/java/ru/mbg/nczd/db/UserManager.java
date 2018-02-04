@@ -12,7 +12,7 @@ public class UserManager {
 
     private static UserManager sUserManager;
 
-    private long mUserId;
+    private long mUserId = -1;
 
     private UserManager(){}
 
@@ -34,4 +34,9 @@ public class UserManager {
     public void setUserId(long userId) {
         mUserId = userId;
     }
+
+    public boolean isUserAuth(){
+        return mUserId > -1;
+    }
+
 }

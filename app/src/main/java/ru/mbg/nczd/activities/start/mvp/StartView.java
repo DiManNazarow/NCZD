@@ -18,4 +18,6 @@ public interface StartView extends MvpView {
 
     void onReceptionAdd();
 
+    void onUpdateProfile();
+
 }

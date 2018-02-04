@@ -17,6 +17,7 @@ import ru.mbg.nczd.R;
 import ru.mbg.nczd.activities.BaseActivity;
 import ru.mbg.nczd.activities.auth.mvp.LoginActivityPresenter;
 import ru.mbg.nczd.activities.auth.mvp.LoginView;
+import ru.mbg.nczd.utils.GuiUtils;
 
 public class LoginActivity extends BaseActivity implements LoginView {
 
@@ -70,6 +71,11 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @Override
     public void onPasswordError(String error) {
         mPasswordInput.setError(error);
+    }
+
+    @Override
+    public void onAuthError() {
+        GuiUtils.showOkMessage(R.string.error_auth_failed_title, R.string.error_auth_failed_message, this);
     }
 
     @OnClick(R.id.recover_text_view)

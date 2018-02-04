@@ -53,7 +53,8 @@
                     android:fontFamily="sans-serif"
                     android:textStyle="normal"
                     android:textColor="#de1f2f42"
-                    android:hint="@string/reception.reception_time"/>
+                    android:hint="@string/reception.reception_time"
+                    android:focusableInTouchMode="false"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -70,7 +71,8 @@
                     android:textSize="16sp"
                     android:fontFamily="sans-serif"
                     android:textStyle="normal"
-                    android:textColor="#de1f2f42"/>
+                    android:textColor="#de1f2f42"
+                    android:focusableInTouchMode="false"/>
 
             </android.support.design.widget.TextInputLayout>
 

@@ -76,9 +76,18 @@ public class RegisterActivityPresenter extends BaseMvpPresenter<RegisterView> {
         if (AppTextUtils.isEmpty(mEmail)){
             getViewState().onEmailError(getActivity().getString(R.string.error_email_empty));
             return;
+        } else if (!mEmail.contains("@")){
+            getViewState().onEmailError(getActivity().getString(R.string.error_email_wrong));
+            return;
+        } else if (App.getAppDatabase().getUserDao().emailExist(mEmail) > 0){
+            getViewState().onEmailError(getActivity().getString(R.string.error_email_exist));
+            return;
         }
         if (AppTextUtils.isEmpty(mLogin)){
             getViewState().onLoginError(getActivity().getString(R.string.error_empty_login));
+            return;
+        } else if (App.getAppDatabase().getUserDao().userExits(mLogin) > 0){
+            getViewState().onLoginError(getActivity().getString(R.string.error_login_exist));
             return;
         }
         if (AppTextUtils.isEmpty(mPassword)){
