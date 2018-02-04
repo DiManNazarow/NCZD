@@ -70,7 +70,7 @@ public class ReceptionInfoActivity extends BaseActivity {
         if (receptionId > -1){
             mReception = App.getAppDatabase().getReceptionDao().get(receptionId);
             if (mReception != null){
-                mReceptionTypeTextView.setText(Params.RECEPTION_TYPE.getById(mReception.getTypeId()).getName(this));
+                mReceptionTypeTextView.setText(Params.RECEPTION_TYPE.getById(mReception.getTypeId()).getReceptionName(this));
                 mRepeatedTextView.setText(mReception.getRepeated());
                 mConsultationType.setText(mReception.getPurpose());
                 mDateTextView.setText(DateUtils.getFullReceptionDate(this, mReception.getDate()));

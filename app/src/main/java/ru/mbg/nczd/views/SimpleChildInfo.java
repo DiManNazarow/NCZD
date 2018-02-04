@@ -61,7 +61,7 @@ public class SimpleChildInfo extends ConstraintLayout {
     }
 
     public void setOmcText(String text){
-        mOmcTextView.setText(text);
+        mOmcTextView.setText(getContext().getString(R.string.omc, text));
     }
 
 }
