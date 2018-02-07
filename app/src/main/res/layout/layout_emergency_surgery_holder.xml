@@ -47,10 +47,11 @@
             android:textSize="16sp"
             android:fontFamily="sans-serif-medium"
             android:textStyle="normal"
-            android:textColor="#1f2f42"
+            android:textColorLink="#1f2f42"
             android:lineSpacingExtra="6sp"
             android:includeFontPadding="false"
             android:text="@string/reception.emergency_surgery_number"
+            android:autoLink="phone"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="parent"/>
 

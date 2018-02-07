@@ -52,9 +52,10 @@
             android:textSize="18sp"
             android:fontFamily="sans-serif-medium"
             android:textStyle="normal"
-            android:textColor="#1f2f42"
+            android:textColorLink="#1f2f42"
             android:lineSpacingExtra="6sp"
-            android:text="@string/contact.head_doctor_number"/>
+            android:text="@string/contact.head_doctor_number"
+            android:autoLink="phone"/>
 
     </LinearLayout>
 
